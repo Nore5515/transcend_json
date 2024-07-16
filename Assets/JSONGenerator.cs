@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,12 @@ using TMPro;
 
 public class JSONGenerator : MonoBehaviour
 {
+    [Serializable]
+    public class JSONExport
+    {
+        public PlayerController.PlayerJSON player;
+    }
+
     [SerializeField]
     Tilemap worldTilemap;
 
@@ -36,7 +43,9 @@ public class JSONGenerator : MonoBehaviour
 
     public void GenerateJSON()
     {
-        string s = JsonUtility.ToJson(player.GetComponent<PlayerController>().json);
+        JSONExport export = new JSONExport();
+        export.player = player.GetComponent<PlayerController>().json;
+        string s = JsonUtility.ToJson(export);
         jsonField.text = s;
     }
 }

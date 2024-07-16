@@ -39,7 +39,8 @@ public class jsonCanvas : MonoBehaviour
         {
             try
             {
-                PlayerController.PlayerJSON playerJSON = JsonUtility.FromJson<PlayerController.PlayerJSON>(inputField.text);
+                JSONGenerator.JSONExport export = JsonUtility.FromJson<JSONGenerator.JSONExport>(inputField.text);
+                PlayerController.PlayerJSON playerJSON = export.player;
                 pc.UpdateJSON(playerJSON);
             }
             catch (Exception e)
