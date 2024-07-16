@@ -4,8 +4,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerController : MonoBehaviour
 {
+    public class PlayerJSON
+    {
+        public Vector3 pos;
+    }
+
     [SerializeField]
     Tilemap worldTilemap;
 
@@ -17,11 +23,17 @@ public class PlayerController : MonoBehaviour
 
     Dictionary<Vector3, string> objectDict = new();
 
-    Vector3 pos;
+    public PlayerJSON json = new PlayerJSON();
+
+    public void UpdateJSON(PlayerJSON newJSON)
+    {
+        json = newJSON;
+        transform.position = json.pos;
+    }
 
     private void Start()
     {
-        pos = transform.position;
+        json.pos = transform.position;
         int objectCount = objectPool.transform.childCount;
         for (int x = 0; x < objectCount; x++)
         {
@@ -38,34 +50,34 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (ProcessFutureMovementTile(pos + Vector3.right))
+            if (ProcessFutureMovementTile(json.pos + Vector3.right))
             {
-                pos.x += 1;
-                transform.position = pos;
+                json.pos.x += 1;
+                transform.position = json.pos;
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (ProcessFutureMovementTile(pos - Vector3.right))
+            if (ProcessFutureMovementTile(json.pos - Vector3.right))
             {
-                pos.x -= 1;
-                transform.position = pos;
+                json.pos.x -= 1;
+                transform.position = json.pos;
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (ProcessFutureMovementTile(pos + Vector3.up))
+            if (ProcessFutureMovementTile(json.pos + Vector3.up))
             {
-                pos.y += 1;
-                transform.position = pos;
+                json.pos.y += 1;
+                transform.position = json.pos;
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (ProcessFutureMovementTile(pos - Vector3.up))
+            if (ProcessFutureMovementTile(json.pos - Vector3.up))
             {
-                pos.y -= 1;
-                transform.position = pos;
+                json.pos.y -= 1;
+                transform.position = json.pos;
             }
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -121,6 +133,6 @@ public class PlayerController : MonoBehaviour
 
     void LogTileStandingOn()
     {
-        Debug.Log(worldTilemap.GetTile(worldTilemap.WorldToCell(pos)));
+        Debug.Log(worldTilemap.GetTile(worldTilemap.WorldToCell(json.pos)));
     }
 }
