@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,11 +12,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject playerPrefab;
 
+    [SerializeField]
+    GameObject objectPool;
+
+    Dictionary<Vector3, string> objectDict = new();
+
     Vector3 pos;
 
     private void Start()
     {
         pos = transform.position;
+        int objectCount = objectPool.transform.childCount;
+        for (int x = 0; x < objectCount; x++)
+        {
+            objectDict.Add(objectPool.transform.GetChild(x).transform.position, objectPool.transform.GetChild(x).name);
+        }
+        foreach (KeyValuePair<Vector3, string> obj in objectDict)
+        {
+            Debug.Log(obj);
+        }
     }
 
     // Update is called once per frame
@@ -23,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (IsTileAtVectorWalkable(pos + Vector3.right))
+            if (ProcessFutureMovementTile(pos + Vector3.right))
             {
                 pos.x += 1;
                 transform.position = pos;
@@ -31,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (IsTileAtVectorWalkable(pos - Vector3.right))
+            if (ProcessFutureMovementTile(pos - Vector3.right))
             {
                 pos.x -= 1;
                 transform.position = pos;
@@ -39,7 +54,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (IsTileAtVectorWalkable(pos + Vector3.up))
+            if (ProcessFutureMovementTile(pos + Vector3.up))
             {
                 pos.y += 1;
                 transform.position = pos;
@@ -47,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (IsTileAtVectorWalkable(pos - Vector3.up))
+            if (ProcessFutureMovementTile(pos - Vector3.up))
             {
                 pos.y -= 1;
                 transform.position = pos;
@@ -57,6 +72,36 @@ public class PlayerController : MonoBehaviour
         {
             LogTileStandingOn();
         }
+    }
+
+    bool ProcessFutureMovementTile(Vector3 worldCoords)
+    {
+        if (IsTileAtVectorWalkable(worldCoords))
+        {
+            if (IsTileAtVectorObject(worldCoords))
+            {
+                ProcessObjectCollision(worldCoords);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    void ProcessObjectCollision(Vector3 worldCoord)
+    {
+        switch (objectDict[worldCoord])
+        {
+            case "Flag":
+                SceneManager.LoadScene(0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    bool IsTileAtVectorObject(Vector3 worldCoord)
+    {
+        return objectDict.ContainsKey(worldCoord);
     }
 
     bool IsTileAtVectorWalkable(Vector3 worldCoord)
