@@ -16,24 +16,38 @@ public class jsonCanvas : MonoBehaviour
     [SerializeField]
     TMP_InputField inputField;
 
+    [SerializeField]
+    JSONGenerator generator;
+
+    [SerializeField]
+    GameObject parsingErrorText;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (panel.activeSelf)
-            {
-                try
-                {
-                    PlayerController.PlayerJSON playerJSON = JsonUtility.FromJson<PlayerController.PlayerJSON>(inputField.text);
-                    pc.UpdateJSON(playerJSON);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogException(e, this);
-                }
-            }
-            panel.SetActive(!panel.activeSelf);
+            panel.SetActive(true);
+            generator.GenerateJSON();
+            parsingErrorText.SetActive(false);
         }
+    }
+
+    public void SubmitPanel()
+    {
+        if (panel.activeSelf)
+        {
+            try
+            {
+                PlayerController.PlayerJSON playerJSON = JsonUtility.FromJson<PlayerController.PlayerJSON>(inputField.text);
+                pc.UpdateJSON(playerJSON);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e, this);
+                parsingErrorText.SetActive(true);
+            }
+        }
+        panel.SetActive(false);
     }
 }

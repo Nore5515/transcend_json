@@ -34,7 +34,7 @@ public class JSONGenerator : MonoBehaviour
         }
     }
 
-    void GenerateJSON()
+    public void GenerateJSON()
     {
         string s = JsonUtility.ToJson(player.GetComponent<PlayerController>().json);
         jsonField.text = s;
