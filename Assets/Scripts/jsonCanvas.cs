@@ -27,9 +27,16 @@ public class jsonCanvas : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            panel.SetActive(true);
-            generator.GenerateJSON();
-            parsingErrorText.SetActive(false);
+            if (!panel.activeSelf)
+            {
+                panel.SetActive(true);
+                generator.GenerateJSON();
+                parsingErrorText.SetActive(false);
+            }
+            else
+            {
+                panel.SetActive(false);
+            }
         }
     }
 

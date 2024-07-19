@@ -14,6 +14,12 @@ public class PlayerController : MonoBehaviour
         public Vector3 pos;
     }
 
+    [Serializable]
+    public class ObjectPoolJSON
+    {
+
+    }
+
     [SerializeField]
     Tilemap worldTilemap;
 
@@ -22,6 +28,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     GameObject objectPool;
+
+    [SerializeField]
+    string nextLevel;
+
 
     Dictionary<Vector3, string> objectDict = new();
 
@@ -106,7 +116,7 @@ public class PlayerController : MonoBehaviour
         switch (objectDict[worldCoord])
         {
             case "Flag":
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(nextLevel);
                 break;
             default:
                 break;
