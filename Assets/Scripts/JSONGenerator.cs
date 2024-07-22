@@ -35,10 +35,10 @@ public class JSONGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            GenerateJSON();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha9))
+        //{
+        //    GenerateJSON();
+        //}
     }
 
     public void GenerateJSON()
