@@ -131,6 +131,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: text
+      value: Press Spacebar to open up the level JSON. Edit away, then click submit!
+        If you get stuck, press R to reset.
+      objectReference: {fileID: 0}
+    - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: messageHidden
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201771517526436726, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: pc
+      value: 
+      objectReference: {fileID: 1475340676}
+    - target: {fileID: 2201771517526436726, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 701994922}
     - target: {fileID: 4529825452006854236, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -224,6 +241,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+--- !u!114 &21922971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8001967631680194759, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+  m_PrefabInstance: {fileID: 21922970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,10 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09ed325cccfd40e588578fecde44d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldTilemap: {fileID: 0}
-  objectPool: {fileID: 0}
+  worldTilemap: {fileID: 876056336}
+  objectPool: {fileID: 1571857985}
   player: {fileID: 1475340674}
-  jsonField: {fileID: 0}
+  jsonField: {fileID: 21922971}
 --- !u!4 &701994923
 Transform:
   m_ObjectHideFlags: 0
@@ -2639,7 +2667,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldTilemap: {fileID: 876056336}
-  playerPrefab: {fileID: 0}
   objectPool: {fileID: 1571857985}
   nextLevel: Level3
   json:

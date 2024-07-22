@@ -16,9 +16,16 @@ public class DialogueBox : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI textField;
 
+    [SerializeField]
+    bool messageHidden = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (messageHidden)
+        {
+            gameObject.SetActive(false);
+        }
         textField.text = text;
     }
 

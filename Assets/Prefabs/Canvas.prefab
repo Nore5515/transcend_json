@@ -769,7 +769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Click on this box to hide this message! Click it once minimzed to bring it
     back up.
-  textField: {fileID: 0}
+  textField: {fileID: 6714532303021439154}
+  messageHidden: 0
 --- !u!61 &602839388231534868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -828,7 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

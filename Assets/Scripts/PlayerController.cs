@@ -24,16 +24,13 @@ public class PlayerController : MonoBehaviour
     Tilemap worldTilemap;
 
     [SerializeField]
-    GameObject playerPrefab;
-
-    [SerializeField]
     GameObject objectPool;
 
     [SerializeField]
     string nextLevel;
 
 
-    Dictionary<Vector3, string> objectDict = new();
+    Dictionary<Vector3, GameObject> objectDict = new();
 
     public PlayerJSON json = new PlayerJSON();
 
@@ -43,15 +40,17 @@ public class PlayerController : MonoBehaviour
         transform.position = json.pos;
     }
 
+    //objectPool.transform.GetChild(x).name
+
     private void Start()
     {
         json.pos = transform.position;
         int objectCount = objectPool.transform.childCount;
         for (int x = 0; x < objectCount; x++)
         {
-            objectDict.Add(objectPool.transform.GetChild(x).transform.position, objectPool.transform.GetChild(x).name);
+            objectDict.Add(objectPool.transform.GetChild(x).transform.position, objectPool.transform.GetChild(x).gameObject);
         }
-        foreach (KeyValuePair<Vector3, string> obj in objectDict)
+        foreach (KeyValuePair<Vector3, GameObject> obj in objectDict)
         {
             Debug.Log(obj);
         }
@@ -60,7 +59,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (GameState.jsonInputOpen) return;
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if (ProcessFutureMovementTile(json.pos + Vector3.right))
             {
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = json.pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             if (ProcessFutureMovementTile(json.pos - Vector3.right))
             {
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = json.pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             if (ProcessFutureMovementTile(json.pos + Vector3.up))
             {
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = json.pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             if (ProcessFutureMovementTile(json.pos - Vector3.up))
             {
@@ -113,10 +113,13 @@ public class PlayerController : MonoBehaviour
 
     void ProcessObjectCollision(Vector3 worldCoord)
     {
-        switch (objectDict[worldCoord])
+        switch (objectDict[worldCoord].tag)
         {
-            case "Flag":
+            case "flag":
                 SceneManager.LoadScene(nextLevel);
+                break;
+            case "button":
+                objectDict[worldCoord].GetComponent<ButtonObject>().SetButtonPressed(true);
                 break;
             default:
                 break;
@@ -139,8 +142,22 @@ public class PlayerController : MonoBehaviour
             case "GreenTile":
                 return false;
             default:
-                return true;
+                break;
         }
+
+        if (objectDict.ContainsKey(worldCoord))
+        {
+            string tag = objectDict[worldCoord].tag;
+            switch (tag)
+            {
+                case "gate":
+                    return false;
+                default:
+                    break;
+            }
+        }
+
+        return true;
     }
 
     void LogTileStandingOn()

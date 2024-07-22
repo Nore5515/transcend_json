@@ -29,12 +29,14 @@ public class jsonCanvas : MonoBehaviour
         {
             if (!panel.activeSelf)
             {
+                GameState.jsonInputOpen = true;
                 panel.SetActive(true);
                 generator.GenerateJSON();
                 parsingErrorText.SetActive(false);
             }
             else
             {
+                GameState.jsonInputOpen = false;
                 panel.SetActive(false);
             }
         }
@@ -56,6 +58,7 @@ public class jsonCanvas : MonoBehaviour
                 parsingErrorText.SetActive(true);
             }
         }
+        GameState.jsonInputOpen = false;
         panel.SetActive(false);
     }
 }

@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &285471121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8001967631680194759, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+  m_PrefabInstance: {fileID: 1415398676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,17 +226,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &622195741 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6714532303021439154, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
-  m_PrefabInstance: {fileID: 1415398676}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &701994921
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,10 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09ed325cccfd40e588578fecde44d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldTilemap: {fileID: 0}
-  objectPool: {fileID: 0}
+  worldTilemap: {fileID: 876056336}
+  objectPool: {fileID: 1571857985}
   player: {fileID: 1475340674}
-  jsonField: {fileID: 0}
+  jsonField: {fileID: 285471121}
 --- !u!4 &701994923
 Transform:
   m_ObjectHideFlags: 0
@@ -2511,10 +2511,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
-      propertyPath: textField
+    - target: {fileID: 2201771517526436726, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: pc
       value: 
-      objectReference: {fileID: 622195741}
+      objectReference: {fileID: 1475340676}
+    - target: {fileID: 2201771517526436726, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 701994922}
     - target: {fileID: 4529825452006854236, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
