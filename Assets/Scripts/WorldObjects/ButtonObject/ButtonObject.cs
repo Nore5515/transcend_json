@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonObject : MonoBehaviour
+//public class ButtonObjectJSON : WorldObjectJSON
+//{
+//    bool pressed;
+//}
+
+public class ButtonObject : WorldObject
 {
     [SerializeField]
     GameObject buttonUp;
@@ -16,9 +21,16 @@ public class ButtonObject : MonoBehaviour
     [SerializeField]
     string wallGroup = "1";
 
+    //ButtonObjectJSON buttonJSON = new();
+
+    public override WorldObjectJSON json { get; set; } = new();
+
     // Start is called before the first frame update
     void Start()
     {
+        json.pos = transform.position;
+        json.type = "Button";
+        json.ID = GetInstanceID();
         UpdateButton();
     }
 

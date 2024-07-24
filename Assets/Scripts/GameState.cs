@@ -7,6 +7,14 @@ public static class GameState
 {
     public static bool jsonInputOpen = false;
 
+    public static bool playerEditingEnabled = true;
+
+    public static bool flagEditingEnabled = false;
+
+    public static bool gateEditingEnabled = false;
+
+    public static bool buttonEditingEnabled = false;
+
     static Dictionary<string, bool> buttonFlags = new();
 
     public static Dictionary<string, bool> GetButtonFlags()

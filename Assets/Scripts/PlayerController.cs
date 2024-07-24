@@ -14,12 +14,6 @@ public class PlayerController : MonoBehaviour
         public Vector3 pos;
     }
 
-    [Serializable]
-    public class ObjectPoolJSON
-    {
-
-    }
-
     [SerializeField]
     Tilemap worldTilemap;
 
@@ -29,8 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     string nextLevel;
 
-
-    Dictionary<Vector3, GameObject> objectDict = new();
+    public Dictionary<Vector3, GameObject> objectDict = new();
+    public List<WorldObject> worldObjects = new();
 
     public PlayerJSON json = new PlayerJSON();
 
@@ -48,11 +42,8 @@ public class PlayerController : MonoBehaviour
         int objectCount = objectPool.transform.childCount;
         for (int x = 0; x < objectCount; x++)
         {
-            objectDict.Add(objectPool.transform.GetChild(x).transform.position, objectPool.transform.GetChild(x).gameObject);
-        }
-        foreach (KeyValuePair<Vector3, GameObject> obj in objectDict)
-        {
-            Debug.Log(obj);
+            worldObjects.Add(objectPool.transform.GetChild(x).GetComponent<WorldObject>());
+            //objectDict.Add(objectPool.transform.GetChild(x).transform.position, objectPool.transform.GetChild(x).gameObject);
         }
     }
 
@@ -96,6 +87,10 @@ public class PlayerController : MonoBehaviour
         {
             LogTileStandingOn();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     bool ProcessFutureMovementTile(Vector3 worldCoords)
@@ -113,13 +108,23 @@ public class PlayerController : MonoBehaviour
 
     void ProcessObjectCollision(Vector3 worldCoord)
     {
-        switch (objectDict[worldCoord].tag)
+        Debug.Log("World Coord {0}" + worldCoord);
+        List<WorldObject> collidingObjs = worldObjects.FindAll(obj => obj.json.pos == worldCoord);
+        foreach (WorldObject collidingObj in collidingObjs)
         {
-            case "flag":
+            HandleObjectCollision(collidingObj);
+        }
+    }
+
+    void HandleObjectCollision(WorldObject collidedObj)
+    {
+        switch (collidedObj.json.type)
+        {
+            case "Flag":
                 SceneManager.LoadScene(nextLevel);
                 break;
-            case "button":
-                objectDict[worldCoord].GetComponent<ButtonObject>().SetButtonPressed(true);
+            case "Button":
+                collidedObj.gameObject.GetComponent<ButtonObject>().SetButtonPressed(true);
                 break;
             default:
                 break;
@@ -128,7 +133,8 @@ public class PlayerController : MonoBehaviour
 
     bool IsTileAtVectorObject(Vector3 worldCoord)
     {
-        return objectDict.ContainsKey(worldCoord);
+        WorldObject collidingObj = worldObjects.Find(obj => obj.json.pos == worldCoord);
+        return (collidingObj != null);
     }
 
     bool IsTileAtVectorWalkable(Vector3 worldCoord)
@@ -145,15 +151,12 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        if (objectDict.ContainsKey(worldCoord))
+        List<WorldObject> collidingGate = worldObjects.FindAll(obj => obj.json.pos == worldCoord && obj.json.type == "Gate");
+        foreach (WorldObject gate in collidingGate)
         {
-            string tag = objectDict[worldCoord].tag;
-            switch (tag)
+            if (gate.gameObject.GetComponent<GateObject>().closed)
             {
-                case "gate":
-                    return false;
-                default:
-                    break;
+                return false;
             }
         }
 

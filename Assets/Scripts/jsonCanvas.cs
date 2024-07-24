@@ -22,6 +22,9 @@ public class jsonCanvas : MonoBehaviour
     [SerializeField]
     GameObject parsingErrorText;
 
+    List<GameObject> worldObjects = new();
+    bool populated = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -44,13 +47,38 @@ public class jsonCanvas : MonoBehaviour
 
     public void SubmitPanel()
     {
+        if (worldObjects.Count == 0 && !populated)
+        {
+            PopulateWorldObjectList();
+        }
+
         if (panel.activeSelf)
         {
             try
             {
                 JSONGenerator.JSONExport export = JsonUtility.FromJson<JSONGenerator.JSONExport>(inputField.text);
-                PlayerController.PlayerJSON playerJSON = export.player;
-                pc.UpdateJSON(playerJSON);
+                if (export.playerList.Count > 0)
+                {
+                    PlayerController.PlayerJSON playerJSON = export.playerList[0];
+                    pc.UpdateJSON(playerJSON);
+                }
+                if (export.objectList.Count > 0)
+                {
+                    foreach (WorldObjectJSON worldObjJSON in export.objectList)
+                    {
+                        // Update actual world objects based on the newly edited json objects
+
+                        foreach (GameObject obj in worldObjects)
+                        {
+                            WorldObject wObj = obj.GetComponent<WorldObject>();
+                            if (wObj.json.ID == worldObjJSON.ID)
+                            {
+                                wObj.UpdateJSON(worldObjJSON);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -60,5 +88,25 @@ public class jsonCanvas : MonoBehaviour
         }
         GameState.jsonInputOpen = false;
         panel.SetActive(false);
+    }
+
+    void PopulateWorldObjectList()
+    {
+        populated = true;
+        GameObject[] gates = GameObject.FindGameObjectsWithTag("gate");
+        GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
+        GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
+        foreach (GameObject gate in gates)
+        {
+            worldObjects.Add(gate);
+        }
+        foreach (GameObject button in buttons)
+        {
+            worldObjects.Add(button);
+        }
+        foreach (GameObject flag in flags)
+        {
+            worldObjects.Add(flag);
+        }
     }
 }

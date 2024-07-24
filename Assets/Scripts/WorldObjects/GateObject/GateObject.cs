@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class GateObject : MonoBehaviour
+//class GateObjectJSON : WorldObjectJSON
+//{
+//    public bool isClosed;
+//}
+
+public class GateObject : WorldObject
 {
     [SerializeField]
-    bool closed = true;
+    public bool closed = true;
 
     [SerializeField]
     SpriteRenderer gateSprite;
@@ -13,10 +19,17 @@ public class GateObject : MonoBehaviour
     [SerializeField]
     public string gateGroup;
 
+    //GateObjectJSON gateJSON = new();
+    public override WorldObjectJSON json { get; set; } = new();
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateSpriteState();
+        json.pos = transform.position;
+        json.type = "Gate";
+        json.ID = GetInstanceID();
+        //gateJSON.isClosed = closed;
     }
 
     public void SetClosedState(bool newState)
@@ -40,4 +53,6 @@ public class GateObject : MonoBehaviour
             gateSprite.material.color = transparent;
         }
     }
+
+
 }
