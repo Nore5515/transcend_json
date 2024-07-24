@@ -324,8 +324,11 @@ MonoBehaviour:
   jsonField: {fileID: 1151542406}
   playerEditingEnabled: 0
   flagEditingEnabled: 0
-  gateEditingEnabled: 1
+  redGateEditingEnabled: 1
+  blueGateEditingEnabled: 0
+  greenGateEditingEnabled: 0
   buttonEditingEnabled: 0
+  jsonBlockers: {fileID: 0}
 --- !u!4 &701994923
 Transform:
   m_ObjectHideFlags: 0

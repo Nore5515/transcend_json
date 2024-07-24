@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 236195832906346612}
   m_Layer: 0
   m_Name: Gate_green
-  m_TagString: gate
+  m_TagString: green_gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,3 +132,4 @@ MonoBehaviour:
   closed: 1
   gateSprite: {fileID: 1668346261536524627}
   gateGroup: 3
+  color: Green

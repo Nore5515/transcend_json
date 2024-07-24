@@ -34,17 +34,31 @@ public class JSONGenerator : MonoBehaviour
     bool flagEditingEnabled = false;
 
     [SerializeField]
-    bool gateEditingEnabled = false;
+    bool redGateEditingEnabled = false;
+
+    [SerializeField]
+    bool blueGateEditingEnabled = false;
+
+    [SerializeField]
+    bool greenGateEditingEnabled = false;
 
     [SerializeField]
     bool buttonEditingEnabled = false;
 
+    [SerializeField]
+    GameObject jsonBlockers = null;
+
+    HashSet<Vector3> blockerTiles = new();
+
+    JSONExport export = new JSONExport();
 
     private void Start()
     {
         GameState.playerEditingEnabled = playerEditingEnabled;
         GameState.flagEditingEnabled = flagEditingEnabled;
-        GameState.gateEditingEnabled = gateEditingEnabled;
+        GameState.redGateEditingEnabled = redGateEditingEnabled;
+        GameState.blueGateEditingEnabled = blueGateEditingEnabled;
+        GameState.greenGateEditingEnabled = greenGateEditingEnabled;
         GameState.buttonEditingEnabled = buttonEditingEnabled;
     }
 
@@ -56,7 +70,16 @@ public class JSONGenerator : MonoBehaviour
 
     public void GenerateJSON()
     {
-        JSONExport export = new JSONExport();
+        export = new JSONExport();
+
+        if (jsonBlockers != null)
+        {
+            for (int x = 0; x < jsonBlockers.transform.childCount; x++)
+            {
+                blockerTiles.Add(jsonBlockers.transform.GetChild(x).transform.position);
+            }
+        }
+
         if (GameState.playerEditingEnabled)
         {
             Debug.Log("player editing enabled");
@@ -65,31 +88,28 @@ public class JSONGenerator : MonoBehaviour
         }
         if (GameState.flagEditingEnabled)
         {
-            Debug.Log("flag editing enabled");
-            GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
-            foreach (GameObject flag in flags)
-            {
-                Debug.Log("flag found");
-                export.objectList.Add(flag.GetComponent<WorldObject>().json);
-            }
+            AddObjectsByTag("flag");
+            //GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
+            //foreach (GameObject flag in flags)
+            //{
+            //    export.objectList.Add(flag.GetComponent<WorldObject>().json);
+            //}
         }
-        if (GameState.gateEditingEnabled)
+        if (GameState.redGateEditingEnabled)
         {
-            GameObject[] gates = GameObject.FindGameObjectsWithTag("gate");
-            foreach (GameObject gate in gates)
-            {
-                Debug.Log("gate found");
-                export.objectList.Add(gate.GetComponent<WorldObject>().json);
-            }
+            AddObjectsByTag("red_gate");
+        }
+        if (GameState.blueGateEditingEnabled)
+        {
+            AddObjectsByTag("blue_gate");
+        }
+        if (GameState.greenGateEditingEnabled)
+        {
+            AddObjectsByTag("green_gate");
         }
         if (GameState.buttonEditingEnabled)
         {
-            GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
-            foreach (GameObject button in buttons)
-            {
-                Debug.Log("button found");
-                export.objectList.Add(button.GetComponent<WorldObject>().json);
-            }
+            AddObjectsByTag("button");
         }
         foreach (WorldObjectJSON json in export.objectList)
         {
@@ -97,5 +117,14 @@ public class JSONGenerator : MonoBehaviour
         }
         string s = JsonUtility.ToJson(export);
         jsonField.text = s;
+    }
+
+    void AddObjectsByTag(string tag)
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in objs)
+        {
+            export.objectList.Add(obj.GetComponent<WorldObject>().json);
+        }
     }
 }

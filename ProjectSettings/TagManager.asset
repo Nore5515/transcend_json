@@ -8,6 +8,9 @@ TagManager:
   - gate
   - button
   - flag
+  - red_gate
+  - blue_gate
+  - green_gate
   layers:
   - Default
   - TransparentFX
@@ -50,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1135243911
+    locked: 0
+  - name: NoJSONZone
+    uniqueID: 2491805595
     locked: 0

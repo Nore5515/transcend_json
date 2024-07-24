@@ -108,7 +108,6 @@ public class PlayerController : MonoBehaviour
 
     void ProcessObjectCollision(Vector3 worldCoord)
     {
-        Debug.Log("World Coord {0}" + worldCoord);
         List<WorldObject> collidingObjs = worldObjects.FindAll(obj => obj.json.pos == worldCoord);
         foreach (WorldObject collidingObj in collidingObjs)
         {
@@ -151,7 +150,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        List<WorldObject> collidingGate = worldObjects.FindAll(obj => obj.json.pos == worldCoord && obj.json.type == "Gate");
+        List<WorldObject> collidingGate = worldObjects.FindAll(obj => obj.json.pos == worldCoord && obj.json.type.Contains("Gate"));
         foreach (WorldObject gate in collidingGate)
         {
             if (gate.gameObject.GetComponent<GateObject>().closed)

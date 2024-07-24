@@ -22,12 +22,15 @@ public class GateObject : WorldObject
     //GateObjectJSON gateJSON = new();
     public override WorldObjectJSON json { get; set; } = new();
 
+    [SerializeField]
+    public string color;
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateSpriteState();
         json.pos = transform.position;
-        json.type = "Gate";
+        json.type = color + "Gate";
         json.ID = GetInstanceID();
         //gateJSON.isClosed = closed;
     }

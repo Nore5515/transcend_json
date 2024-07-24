@@ -11,7 +11,9 @@ public static class GameState
 
     public static bool flagEditingEnabled = false;
 
-    public static bool gateEditingEnabled = false;
+    public static bool redGateEditingEnabled = false;
+    public static bool blueGateEditingEnabled = false;
+    public static bool greenGateEditingEnabled = false;
 
     public static bool buttonEditingEnabled = false;
 
@@ -37,7 +39,7 @@ public static class GameState
 
     static void UpdateGates()
     {
-        GameObject[] gates = GameObject.FindGameObjectsWithTag("gate");
+        List<GameObject> gates = GetGates();
         foreach (GameObject gate in gates)
         {
             GateObject go = gate.GetComponent<GateObject>();
@@ -46,5 +48,26 @@ public static class GameState
                 go.SetClosedState(!buttonFlags[go.gateGroup]);
             }
         }
+    }
+
+    static List<GameObject> GetGates()
+    {
+        GameObject[] redgates = GameObject.FindGameObjectsWithTag("red_gate");
+        GameObject[] bluegates = GameObject.FindGameObjectsWithTag("blue_gate");
+        GameObject[] greengates = GameObject.FindGameObjectsWithTag("green_gate");
+        List<GameObject> gates = new();
+        foreach (GameObject red in redgates)
+        {
+            gates.Add(red);
+        }
+        foreach (GameObject blue in bluegates)
+        {
+            gates.Add(blue);
+        }
+        foreach (GameObject green in greengates)
+        {
+            gates.Add(green);
+        }
+        return gates;
     }
 }

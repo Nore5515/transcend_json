@@ -93,10 +93,9 @@ public class jsonCanvas : MonoBehaviour
     void PopulateWorldObjectList()
     {
         populated = true;
-        GameObject[] gates = GameObject.FindGameObjectsWithTag("gate");
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
         GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
-        foreach (GameObject gate in gates)
+        foreach (GameObject gate in GetGates())
         {
             worldObjects.Add(gate);
         }
@@ -108,5 +107,26 @@ public class jsonCanvas : MonoBehaviour
         {
             worldObjects.Add(flag);
         }
+    }
+
+    List<GameObject> GetGates()
+    {
+        GameObject[] redgates = GameObject.FindGameObjectsWithTag("red_gate");
+        GameObject[] bluegates = GameObject.FindGameObjectsWithTag("blue_gate");
+        GameObject[] greengates = GameObject.FindGameObjectsWithTag("green_gate");
+        List<GameObject> gates = new();
+        foreach (GameObject red in redgates)
+        {
+            gates.Add(red);
+        }
+        foreach (GameObject blue in bluegates)
+        {
+            gates.Add(blue);
+        }
+        foreach (GameObject green in greengates)
+        {
+            gates.Add(green);
+        }
+        return gates;
     }
 }

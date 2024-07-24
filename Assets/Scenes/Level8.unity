@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1723166239595663047, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: m_TagString
-      value: gate
+      value: red_gate
       objectReference: {fileID: 0}
     - target: {fileID: 7844721061636283737, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: m_RootOrder
@@ -324,8 +324,11 @@ MonoBehaviour:
   jsonField: {fileID: 1151542406}
   playerEditingEnabled: 0
   flagEditingEnabled: 0
-  gateEditingEnabled: 0
+  redGateEditingEnabled: 0
+  blueGateEditingEnabled: 0
+  greenGateEditingEnabled: 0
   buttonEditingEnabled: 1
+  jsonBlockers: {fileID: 0}
 --- !u!4 &701994923
 Transform:
   m_ObjectHideFlags: 0
@@ -2516,7 +2519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1723166239595663047, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: m_TagString
-      value: gate
+      value: red_gate
       objectReference: {fileID: 0}
     - target: {fileID: 7844721061636283737, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: m_RootOrder
