@@ -131,4 +131,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closed: 1
   gateSprite: {fileID: 1668346261536524627}
-  gateGroup: 
+  gateGroup: 1

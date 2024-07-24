@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8de5e2b12935246d591cabb689b479a4
+guid: 25d67f7dcae61492da632118f84da128
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: RedTile
+  - name: Button_down_blue
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.4166667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 32
-      height: 32
-    spriteID: 7a97f12571d234fefbc626fd9a136bcc
+      width: 30
+      height: 12
+    spriteID: 89f3ce85ddd90469aaee335617737403
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 690167627
-    name: RedTile
+    guid: -485101856
+    name: Button_down_blue
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: RedTile
+    - name: Button_down_blue
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      spriteId: 7a97f12571d234fefbc626fd9a136bcc
+        x: 1
+        y: 5
+        width: 30
+        height: 12
+      spriteId: 89f3ce85ddd90469aaee335617737403
     linkedCells: []
     parentIndex: -1
   platformSettings: []
