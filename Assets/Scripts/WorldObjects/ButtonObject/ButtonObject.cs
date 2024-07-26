@@ -112,4 +112,13 @@ public class ButtonObject : WorldObject
             buttonDown.SetActive(false);
         }
     }
+
+    public override void UpdateJSON(WorldObjectJSON newJSON)
+    {
+        json = newJSON;
+        transform.position = json.pos;
+        string newColor = newJSON.type.Substring(0, newJSON.type.IndexOf("Button"));
+        Debug.Log(newColor);
+        UpdateWallGroup(newColor);
+    }
 }

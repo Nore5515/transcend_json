@@ -43,6 +43,11 @@ public class jsonCanvas : MonoBehaviour
                 panel.SetActive(false);
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameState.jsonInputOpen = false;
+            panel.SetActive(false);
+        }
     }
 
     public void SubmitPanel()
