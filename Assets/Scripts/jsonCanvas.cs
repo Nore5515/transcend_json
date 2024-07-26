@@ -81,10 +81,18 @@ public class jsonCanvas : MonoBehaviour
                         foreach (GameObject obj in worldObjects)
                         {
                             WorldObject wObj = obj.GetComponent<WorldObject>();
-                            if (wObj.json.ID == worldObjJSON.ID)
+                            if (!generator.blockerTiles.Contains(worldObjJSON.pos))
                             {
-                                wObj.UpdateJSON(worldObjJSON);
-                                break;
+                                if (wObj.json.ID == worldObjJSON.ID)
+                                {
+                                    wObj.UpdateJSON(worldObjJSON);
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                error = "No editing into no-json zone!";
+                                throw new Exception();
                             }
                         }
                     }
