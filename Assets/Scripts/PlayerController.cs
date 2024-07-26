@@ -47,49 +47,47 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    float holdingLeftTime = 0.0f;
+    float holdingRightTime = 0.0f;
+    float holdingUpTime = 0.0f;
+    float holdingDownTime = 0.0f;
+
+
     // Update is called once per frame
     void Update()
     {
         if (GameState.jsonInputOpen) return;
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            if (ProcessFutureMovementTile(json.pos + Vector3.right))
-            {
-                json.pos.x += 1;
-                transform.position = json.pos;
-            }
+            MoveOnceInDir(Vector3.right);
+            holdingRightTime = 0.1f;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            if (ProcessFutureMovementTile(json.pos - Vector3.right))
-            {
-                json.pos.x -= 1;
-                transform.position = json.pos;
-            }
+            MoveOnceInDir(Vector3.left);
+            holdingLeftTime = 0.1f;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            if (ProcessFutureMovementTile(json.pos + Vector3.up))
-            {
-                json.pos.y += 1;
-                transform.position = json.pos;
-            }
+            MoveOnceInDir(Vector3.up);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
-            if (ProcessFutureMovementTile(json.pos - Vector3.up))
-            {
-                json.pos.y -= 1;
-                transform.position = json.pos;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            LogTileStandingOn();
+            MoveOnceInDir(-Vector3.up);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    void MoveOnceInDir(Vector3 moveVec)
+    {
+        if (ProcessFutureMovementTile(json.pos + moveVec))
+        {
+            json.pos.x += moveVec.x;
+            json.pos.y += moveVec.y;
+            transform.position = json.pos;
         }
     }
 
@@ -122,11 +120,12 @@ public class PlayerController : MonoBehaviour
             case "Flag":
                 SceneManager.LoadScene(nextLevel);
                 break;
-            case "Button":
-                collidedObj.gameObject.GetComponent<ButtonObject>().SetButtonPressed(true);
-                break;
             default:
                 break;
+        }
+        if (collidedObj.json.type.Contains("Button"))
+        {
+            collidedObj.gameObject.GetComponent<ButtonObject>().SetButtonPressed(true);
         }
     }
 

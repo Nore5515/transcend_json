@@ -31,6 +31,7 @@ public class GateObject : WorldObject
         UpdateSpriteState();
         json.pos = transform.position;
         json.type = color + "Gate";
+        gateGroup = color;
         json.ID = GetInstanceID();
         //gateJSON.isClosed = closed;
     }

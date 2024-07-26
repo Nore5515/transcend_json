@@ -454,7 +454,7 @@ MonoBehaviour:
   objectPool: {fileID: 1571857985}
   player: {fileID: 1148207227}
   jsonField: {fileID: 1151542406}
-  playerEditingEnabled: 0
+  playerEditingEnabled: 1
   flagEditingEnabled: 0
   redGateEditingEnabled: 0
   blueGateEditingEnabled: 0
@@ -3301,11 +3301,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: text
-      value: 
+      value: Don't forget to check what you can edit!
       objectReference: {fileID: 0}
     - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: messageHidden
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2201771517526436726, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: pc

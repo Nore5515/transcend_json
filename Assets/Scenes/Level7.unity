@@ -132,6 +132,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1571857986}
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
+      propertyPath: closed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup
       value: 1
       objectReference: {fileID: 0}
@@ -299,7 +303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: closed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup
@@ -2589,7 +2593,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: closed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup
@@ -2812,7 +2816,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: closed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup
@@ -2890,7 +2894,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: closed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup
@@ -3008,7 +3012,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: closed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup
@@ -3086,7 +3090,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: closed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 236195832906346612, guid: 88e41c263d6c646e58599796c88e4c5e, type: 3}
       propertyPath: gateGroup

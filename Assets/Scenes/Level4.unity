@@ -249,6 +249,12 @@ MonoBehaviour:
   player: {fileID: 1173576947}
   jsonField: {fileID: 1151542406}
   playerEditingEnabled: 0
+  flagEditingEnabled: 0
+  redGateEditingEnabled: 0
+  blueGateEditingEnabled: 0
+  greenGateEditingEnabled: 0
+  buttonEditingEnabled: 0
+  jsonBlockers: {fileID: 0}
 --- !u!4 &701994923
 Transform:
   m_ObjectHideFlags: 0
@@ -2487,7 +2493,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 960156604081782071, guid: 14d658182daa24c859a7e578b7e3fe3d, type: 3}
       propertyPath: nextLevel
-      value: Level5
+      value: Level4.5
       objectReference: {fileID: 0}
     - target: {fileID: 960156604081782071, guid: 14d658182daa24c859a7e578b7e3fe3d, type: 3}
       propertyPath: objectPool

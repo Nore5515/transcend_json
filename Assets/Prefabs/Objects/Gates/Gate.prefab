@@ -131,5 +131,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closed: 1
   gateSprite: {fileID: 1668346261536524627}
-  gateGroup: 1
+  gateGroup: Red
   color: Red
