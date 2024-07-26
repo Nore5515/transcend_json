@@ -52,6 +52,8 @@ public class JSONGenerator : MonoBehaviour
 
     JSONExport export = new JSONExport();
 
+    Dictionary<string, bool> enabledTags = new();
+
     private void Start()
     {
         GameState.playerEditingEnabled = playerEditingEnabled;
@@ -61,9 +63,18 @@ public class JSONGenerator : MonoBehaviour
         GameState.greenGateEditingEnabled = greenGateEditingEnabled;
         GameState.buttonEditingEnabled = buttonEditingEnabled;
 
-        for (int x = 0; x < jsonBlockers.transform.childCount; x++)
+        enabledTags.Add("flag", GameState.flagEditingEnabled);
+        enabledTags.Add("red_gate", GameState.redGateEditingEnabled);
+        enabledTags.Add("blue_gate", GameState.blueGateEditingEnabled);
+        enabledTags.Add("green_gate", GameState.greenGateEditingEnabled);
+        enabledTags.Add("button", GameState.buttonEditingEnabled);
+
+        if (jsonBlockers != null)
         {
-            blockerTiles.Add(jsonBlockers.transform.GetChild(x).transform.position);
+            for (int x = 0; x < jsonBlockers.transform.childCount; x++)
+            {
+                blockerTiles.Add(jsonBlockers.transform.GetChild(x).transform.position);
+            }
         }
     }
 
@@ -88,39 +99,23 @@ public class JSONGenerator : MonoBehaviour
         if (GameState.playerEditingEnabled)
         {
             PlayerController.PlayerJSON pJson = player.GetComponent<PlayerController>().json;
-            if (blockerTiles.Contains(pJson.pos))
-            {
-                Debug.Log("No editing! Inside blocker tiles!");
-            }
-            else
+            if (!blockerTiles.Contains(pJson.pos))
             {
                 export.playerList.Add(pJson);
             }
         }
-        if (GameState.flagEditingEnabled)
+
+        foreach (KeyValuePair<string, bool> kvp in enabledTags)
         {
-            AddObjectsByTag("flag");
+            if (kvp.Value)
+            {
+                AddObjectsByTag(kvp.Key);
+            }
         }
-        if (GameState.redGateEditingEnabled)
-        {
-            AddObjectsByTag("red_gate");
-        }
-        if (GameState.blueGateEditingEnabled)
-        {
-            AddObjectsByTag("blue_gate");
-        }
-        if (GameState.greenGateEditingEnabled)
-        {
-            AddObjectsByTag("green_gate");
-        }
-        if (GameState.buttonEditingEnabled)
-        {
-            AddObjectsByTag("button");
-        }
-        foreach (WorldObjectJSON json in export.objectList)
-        {
-            Debug.Log(json.ID);
-        }
+        //foreach (WorldObjectJSON json in export.objectList)
+        //{
+        //    Debug.Log(json.ID);
+        //}
         string s = JsonUtility.ToJson(export);
         jsonField.text = s;
     }
@@ -130,7 +125,11 @@ public class JSONGenerator : MonoBehaviour
         GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject obj in objs)
         {
-            export.objectList.Add(obj.GetComponent<WorldObject>().json);
+            WorldObjectJSON wobJSON = obj.GetComponent<WorldObject>().json;
+            if (!blockerTiles.Contains(wobJSON.pos))
+            {
+                export.objectList.Add(wobJSON);
+            }
         }
     }
 }
