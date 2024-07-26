@@ -48,7 +48,7 @@ public class JSONGenerator : MonoBehaviour
     [SerializeField]
     GameObject jsonBlockers = null;
 
-    HashSet<Vector3> blockerTiles = new();
+    public HashSet<Vector3> blockerTiles = new();
 
     JSONExport export = new JSONExport();
 
@@ -60,6 +60,11 @@ public class JSONGenerator : MonoBehaviour
         GameState.blueGateEditingEnabled = blueGateEditingEnabled;
         GameState.greenGateEditingEnabled = greenGateEditingEnabled;
         GameState.buttonEditingEnabled = buttonEditingEnabled;
+
+        for (int x = 0; x < jsonBlockers.transform.childCount; x++)
+        {
+            blockerTiles.Add(jsonBlockers.transform.GetChild(x).transform.position);
+        }
     }
 
     // Update is called once per frame
@@ -82,18 +87,19 @@ public class JSONGenerator : MonoBehaviour
 
         if (GameState.playerEditingEnabled)
         {
-            Debug.Log("player editing enabled");
-            export.playerList.Add(player.GetComponent<PlayerController>().json);
-            //export.player = player.GetComponent<PlayerController>().json;
+            PlayerController.PlayerJSON pJson = player.GetComponent<PlayerController>().json;
+            if (blockerTiles.Contains(pJson.pos))
+            {
+                Debug.Log("No editing! Inside blocker tiles!");
+            }
+            else
+            {
+                export.playerList.Add(pJson);
+            }
         }
         if (GameState.flagEditingEnabled)
         {
             AddObjectsByTag("flag");
-            //GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
-            //foreach (GameObject flag in flags)
-            //{
-            //    export.objectList.Add(flag.GetComponent<WorldObject>().json);
-            //}
         }
         if (GameState.redGateEditingEnabled)
         {

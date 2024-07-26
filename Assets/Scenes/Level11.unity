@@ -1235,7 +1235,9 @@ MonoBehaviour:
   jsonField: {fileID: 1151542406}
   playerEditingEnabled: 1
   flagEditingEnabled: 1
-  gateEditingEnabled: 0
+  redGateEditingEnabled: 0
+  blueGateEditingEnabled: 0
+  greenGateEditingEnabled: 0
   buttonEditingEnabled: 0
   jsonBlockers: {fileID: 615534624}
 --- !u!4 &701994923
@@ -5259,6 +5261,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 508565967147601976, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: m_text
+      value: PARSING ERROR!
+      objectReference: {fileID: 0}
     - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: text
       value: Certain tiles are No-JSON zones! You cannot move things onto or off
@@ -5358,6 +5364,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4529825452006854236, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306581258751981137, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6198799555899191423, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}

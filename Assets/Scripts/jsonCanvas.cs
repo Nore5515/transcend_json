@@ -52,15 +52,25 @@ public class jsonCanvas : MonoBehaviour
             PopulateWorldObjectList();
         }
 
+
         if (panel.activeSelf)
         {
+            string error = "";
             try
             {
                 JSONGenerator.JSONExport export = JsonUtility.FromJson<JSONGenerator.JSONExport>(inputField.text);
                 if (export.playerList.Count > 0)
                 {
-                    PlayerController.PlayerJSON playerJSON = export.playerList[0];
-                    pc.UpdateJSON(playerJSON);
+                    if (generator.blockerTiles.Contains(export.playerList[0].pos))
+                    {
+                        error = "No editing into no-json zone!";
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        PlayerController.PlayerJSON playerJSON = export.playerList[0];
+                        pc.UpdateJSON(playerJSON);
+                    }
                 }
                 if (export.objectList.Count > 0)
                 {
@@ -83,6 +93,14 @@ public class jsonCanvas : MonoBehaviour
             catch (Exception e)
             {
                 Debug.Log(e, this);
+                if (error != "")
+                {
+                    parsingErrorText.GetComponent<TMP_Text>().text = "PARSING ERROR!\n" + error;
+                }
+                else
+                {
+                    parsingErrorText.GetComponent<TMP_Text>().text = "PARSING ERROR!";
+                }
                 parsingErrorText.SetActive(true);
             }
         }
