@@ -391,6 +391,7 @@ MonoBehaviour:
   blueGateEditingEnabled: 0
   greenGateEditingEnabled: 0
   buttonEditingEnabled: 1
+  editableTypes: 00000000
   jsonBlockers: {fileID: 615534624}
 --- !u!4 &701994923
 Transform:

@@ -46,6 +46,9 @@ public class JSONGenerator : MonoBehaviour
     bool buttonEditingEnabled = false;
 
     [SerializeField]
+    List<TypeEnum> editableTypes = new();
+
+    [SerializeField]
     GameObject jsonBlockers = null;
 
     public HashSet<Vector3> blockerTiles = new();
@@ -68,6 +71,8 @@ public class JSONGenerator : MonoBehaviour
         enabledTags.Add("blue_gate", GameState.blueGateEditingEnabled);
         enabledTags.Add("green_gate", GameState.greenGateEditingEnabled);
         enabledTags.Add("button", GameState.buttonEditingEnabled);
+
+        GameState.editableTypes = editableTypes;
 
         if (jsonBlockers != null)
         {

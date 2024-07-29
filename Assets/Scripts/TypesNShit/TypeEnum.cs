@@ -4,5 +4,14 @@ using UnityEngine;
 
 public enum TypeEnum
 {
-
+    flag,
+    redgate,
+    bluegate,
+    greengate,
+    redbutton,
+    bluebutton,
+    greenbutton,
+    coin,
+    coingate,
+    player
 }

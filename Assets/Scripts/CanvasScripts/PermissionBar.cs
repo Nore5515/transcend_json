@@ -9,9 +9,6 @@ public class PermissionBar : MonoBehaviour
     bool rising = false;
 
     [SerializeField]
-    string text;
-
-    [SerializeField]
     TextMeshProUGUI textField;
 
     [SerializeField]
@@ -22,13 +19,23 @@ public class PermissionBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (messageHidden)
+        if (messageHidden || GameState.editableTypes.Count == 0)
         {
             gameObject.SetActive(false);
             return;
         }
 
         start = transform.position;
+
+        string text = "Editable Types: {";
+        List<string> typeStrings = new();
+        foreach (TypeEnum type in GameState.editableTypes)
+        {
+            typeStrings.Add("" + type);
+        }
+        text += string.Join(",", typeStrings);
+        text += "}";
+
         textField.text = text;
     }
 

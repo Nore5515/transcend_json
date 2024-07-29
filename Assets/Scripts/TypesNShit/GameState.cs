@@ -19,7 +19,7 @@ public static class GameState
 
     static Dictionary<string, bool> buttonFlags = new();
 
-    public static List<string> typePermissions = new();
+    public static List<TypeEnum> editableTypes = new();
 
     public static Dictionary<string, bool> GetButtonFlags()
     {

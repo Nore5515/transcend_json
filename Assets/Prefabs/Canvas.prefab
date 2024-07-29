@@ -1771,8 +1771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d86a9694f974a189140c0ccf01e67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: dadasd
-  textField: {fileID: 0}
+  textField: {fileID: 8374573303512955572}
   messageHidden: 1
 --- !u!61 &286777282337392976
 BoxCollider2D:
