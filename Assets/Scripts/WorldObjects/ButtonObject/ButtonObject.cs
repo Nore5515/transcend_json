@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public class ButtonObjectJSON : WorldObjectJSON
-//{
-//    bool pressed;
-//}
-
 public class ButtonObject : WorldObject
 {
     [SerializeField]
@@ -50,7 +45,7 @@ public class ButtonObject : WorldObject
     {
         wallGroup = newWallGroup;
         SwitchSprites(wallGroup);
-        json.type = wallGroup + "Button";
+        json.type = GetEnumFromString(wallGroup + "Button");
     }
 
     void SwitchSprites(string colorSprites)
@@ -61,25 +56,35 @@ public class ButtonObject : WorldObject
             case "Red":
                 buttonUp = buttonUp_red;
                 buttonDown = buttonDown_red;
-                //buttonUp_red.SetActive(true);
-                //buttonDown_red.SetActive(true);
                 break;
             case "Blue":
                 buttonUp = buttonUp_blue;
                 buttonDown = buttonDown_blue;
-                //buttonUp_blue.SetActive(true);
-                //buttonDown_blue.SetActive(true);
                 break;
             case "Green":
                 buttonUp = buttonUp_green;
                 buttonDown = buttonDown_green;
-                //buttonUp_green.SetActive(true);
-                //buttonDown_green.SetActive(true);
                 break;
             default:
                 break;
         }
         UpdateButton();
+    }
+
+    TypeEnum GetEnumFromString(string s)
+    {
+        switch (s)
+        {
+            case "RedButton":
+                return TypeEnum.redbutton;
+            case "BlueButton":
+                return TypeEnum.bluebutton;
+            case "GreenButton":
+                return TypeEnum.greenbutton;
+            default:
+                break;
+        }
+        throw new System.Exception();
     }
 
     void ToggleOffAllSprites()
@@ -117,8 +122,25 @@ public class ButtonObject : WorldObject
     {
         json = newJSON;
         transform.position = json.pos;
-        string newColor = newJSON.type.Substring(0, newJSON.type.IndexOf("Button"));
+        string newColor = GetColorFromEnum(newJSON.type);
         Debug.Log(newColor);
         UpdateWallGroup(newColor);
     }
+
+    string GetColorFromEnum(TypeEnum num)
+    {
+        switch (num)
+        {
+            case TypeEnum.redbutton:
+                return "Red";
+            case TypeEnum.bluebutton:
+                return "Blue";
+            case TypeEnum.greenbutton:
+                return "Green";
+            default:
+                break;
+        }
+        throw new System.Exception();
+    }
+
 }

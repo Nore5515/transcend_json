@@ -25,21 +25,21 @@ public class GateObject : WorldObject
     [SerializeField]
     public string color;
 
+    public void SetClosedState(bool newState)
+    {
+        closed = newState;
+        UpdateSpriteState();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateSpriteState();
         json.pos = transform.position;
-        json.type = color + "Gate";
+        json.type = GetEnumFromString(color);
         gateGroup = color;
         json.ID = GetInstanceID();
         //gateJSON.isClosed = closed;
-    }
-
-    public void SetClosedState(bool newState)
-    {
-        closed = newState;
-        UpdateSpriteState();
     }
 
     void UpdateSpriteState()
@@ -56,6 +56,22 @@ public class GateObject : WorldObject
             transparent.a = 0.0f;
             gateSprite.material.color = transparent;
         }
+    }
+
+    TypeEnum GetEnumFromString(string s)
+    {
+        switch (s)
+        {
+            case "Red":
+                return TypeEnum.redgate;
+            case "Blue":
+                return TypeEnum.bluegate;
+            case "Green":
+                return TypeEnum.greengate;
+            default:
+                break;
+        }
+        throw new System.Exception();
     }
 
 

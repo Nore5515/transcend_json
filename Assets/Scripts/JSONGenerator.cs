@@ -11,7 +11,7 @@ public class JSONGenerator : MonoBehaviour
     public class JSONExport
     {
         public List<PlayerController.PlayerJSON> playerList = new();
-        public List<WorldObjectJSON> objectList = new();
+        public List<ParsedWorldObjectJSON> objectList = new();
         //public PlayerController.PlayerJSON player;
     }
 
@@ -117,10 +117,7 @@ public class JSONGenerator : MonoBehaviour
                 AddObjectsByTag(kvp.Key);
             }
         }
-        //foreach (WorldObjectJSON json in export.objectList)
-        //{
-        //    Debug.Log(json.ID);
-        //}
+
         string s = JsonUtility.ToJson(export);
         jsonField.text = s;
     }
@@ -131,9 +128,10 @@ public class JSONGenerator : MonoBehaviour
         foreach (GameObject obj in objs)
         {
             WorldObjectJSON wobJSON = obj.GetComponent<WorldObject>().json;
-            if (!blockerTiles.Contains(wobJSON.pos))
+            ParsedWorldObjectJSON parsedJSON = new(wobJSON);
+            if (!blockerTiles.Contains(parsedJSON.pos))
             {
-                export.objectList.Add(wobJSON);
+                export.objectList.Add(parsedJSON);
             }
         }
     }

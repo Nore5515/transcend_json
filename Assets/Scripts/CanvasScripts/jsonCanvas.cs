@@ -60,7 +60,6 @@ public class jsonCanvas : MonoBehaviour
 
         if (panel.activeSelf)
         {
-            string error = "";
             try
             {
                 JSONGenerator.JSONExport export = JsonUtility.FromJson<JSONGenerator.JSONExport>(inputField.text);
@@ -68,8 +67,7 @@ public class jsonCanvas : MonoBehaviour
                 {
                     if (generator.blockerTiles.Contains(export.playerList[0].pos))
                     {
-                        error = "No editing into no-json zone!";
-                        throw new Exception();
+                        throw new Exception("No editing into no-json zone!");
                     }
                     else
                     {
@@ -79,25 +77,34 @@ public class jsonCanvas : MonoBehaviour
                 }
                 if (export.objectList.Count > 0)
                 {
-                    foreach (WorldObjectJSON worldObjJSON in export.objectList)
+                    foreach (ParsedWorldObjectJSON importedWorldObjJSON in export.objectList)
                     {
                         // Update actual world objects based on the newly edited json objects
+                        WorldObjectJSON unparsedObjJSON = importedWorldObjJSON.GetWorldObjectJSON();
+                        Debug.Log(JsonUtility.ToJson(unparsedObjJSON));
 
                         foreach (GameObject obj in worldObjects)
                         {
                             WorldObject wObj = obj.GetComponent<WorldObject>();
-                            if (!generator.blockerTiles.Contains(worldObjJSON.pos))
+                            if (!generator.blockerTiles.Contains(unparsedObjJSON.pos))
                             {
-                                if (wObj.json.ID == worldObjJSON.ID)
+                                if (wObj.json.ID == unparsedObjJSON.ID)
                                 {
-                                    wObj.UpdateJSON(worldObjJSON);
+                                    if (wObj.json.type != unparsedObjJSON.type)
+                                    {
+                                        if (GameState.editableTypes.Contains(unparsedObjJSON.type))
+                                        {
+
+                                        }
+                                        throw new Exception("Invalid Permission: Type Edit");
+                                    }
+                                    wObj.UpdateJSON(unparsedObjJSON);
                                     break;
                                 }
                             }
                             else
                             {
-                                error = "No editing into no-json zone!";
-                                throw new Exception();
+                                throw new Exception("No editing into no-json zone!");
                             }
                         }
                     }
@@ -105,15 +112,7 @@ public class jsonCanvas : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log(e, this);
-                if (error != "")
-                {
-                    parsingErrorText.GetComponent<TMP_Text>().text = "PARSING ERROR!\n" + error;
-                }
-                else
-                {
-                    parsingErrorText.GetComponent<TMP_Text>().text = "PARSING ERROR!";
-                }
+                parsingErrorText.GetComponent<TMP_Text>().text = "PARSING ERROR!\n" + e.Message;
                 parsingErrorText.SetActive(true);
             }
         }

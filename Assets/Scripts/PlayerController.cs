@@ -117,16 +117,25 @@ public class PlayerController : MonoBehaviour
     {
         switch (collidedObj.json.type)
         {
-            case "Flag":
+            case TypeEnum.flag:
                 SceneManager.LoadScene(nextLevel);
                 break;
             default:
                 break;
         }
-        if (collidedObj.json.type.Contains("Button"))
+        if (IsButton(collidedObj.json.type))
         {
             collidedObj.gameObject.GetComponent<ButtonObject>().SetButtonPressed(true);
         }
+    }
+
+    bool IsButton(TypeEnum type)
+    {
+        if (type == TypeEnum.redbutton || type == TypeEnum.bluebutton || type == TypeEnum.greenbutton)
+        {
+            return true;
+        }
+        return false;
     }
 
     bool IsTileAtVectorObject(Vector3 worldCoord)
@@ -149,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        List<WorldObject> collidingGate = worldObjects.FindAll(obj => obj.json.pos == worldCoord && obj.json.type.Contains("Gate"));
+        List<WorldObject> collidingGate = worldObjects.FindAll(obj => obj.json.pos == worldCoord && IsGate(obj.json.type));
         foreach (WorldObject gate in collidingGate)
         {
             if (gate.gameObject.GetComponent<GateObject>().closed)
@@ -159,6 +168,15 @@ public class PlayerController : MonoBehaviour
         }
 
         return true;
+    }
+
+    bool IsGate(TypeEnum type)
+    {
+        if (type == TypeEnum.redgate || type == TypeEnum.bluegate || type == TypeEnum.greengate)
+        {
+            return true;
+        }
+        return false;
     }
 
     void LogTileStandingOn()

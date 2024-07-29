@@ -18,7 +18,7 @@ public class FlagObject : WorldObject
     void Start()
     {
         json.pos = transform.position;
-        json.type = "Flag";
+        json.type = TypeEnum.flag;
         json.ID = GetInstanceID();
     }
 }
