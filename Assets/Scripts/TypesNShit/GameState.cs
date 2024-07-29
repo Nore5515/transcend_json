@@ -19,6 +19,8 @@ public static class GameState
 
     static Dictionary<string, bool> buttonFlags = new();
 
+    public static List<string> typePermissions = new();
+
     public static Dictionary<string, bool> GetButtonFlags()
     {
         return buttonFlags;
