@@ -92,11 +92,14 @@ public class jsonCanvas : MonoBehaviour
                                 {
                                     if (wObj.json.type != unparsedObjJSON.type)
                                     {
-                                        if (GameState.editableTypes.Contains(unparsedObjJSON.type))
+                                        if (GameState.editableTypes.Contains(unparsedObjJSON.type) && GameState.editableTypes.Contains(wObj.json.type))
                                         {
-
+                                            // good !
                                         }
-                                        throw new Exception("Invalid Permission: Type Edit");
+                                        else
+                                        {
+                                            throw new Exception("Invalid Permission: Type Edit");
+                                        }
                                     }
                                     wObj.UpdateJSON(unparsedObjJSON);
                                     break;
