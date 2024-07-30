@@ -79,6 +79,10 @@ public class jsonCanvas : MonoBehaviour
                 {
                     foreach (ParsedWorldObjectJSON importedWorldObjJSON in export.objectList)
                     {
+                        if (importedWorldObjJSON == null)
+                        {
+                            continue;
+                        }
                         // Update actual world objects based on the newly edited json objects
                         WorldObjectJSON unparsedObjJSON = importedWorldObjJSON.GetWorldObjectJSON();
                         Debug.Log(JsonUtility.ToJson(unparsedObjJSON));

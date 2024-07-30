@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                 SceneManager.LoadScene(nextLevel);
                 break;
             case TypeEnum.coin:
-                GameState.coins++;
+                GameState.IncrementCoins();
                 Destroy(collidedObj.gameObject);
                 return;
             default:
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
         List<WorldObject> collidingGate = worldObjects.FindAll(obj => obj.json.pos == worldCoord && IsGate(obj.json.type));
         foreach (WorldObject gate in collidingGate)
         {
-            if (gate.gameObject.GetComponent<GateObject>().closed)
+            if (gate.gameObject.GetComponent<GateObjectInterface>().closed)
             {
                 return false;
             }
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
     bool IsGate(TypeEnum type)
     {
-        if (type == TypeEnum.redgate || type == TypeEnum.bluegate || type == TypeEnum.greengate)
+        if (type == TypeEnum.redgate || type == TypeEnum.bluegate || type == TypeEnum.greengate || type == TypeEnum.coingate)
         {
             return true;
         }

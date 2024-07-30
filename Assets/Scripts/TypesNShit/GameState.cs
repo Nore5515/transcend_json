@@ -75,4 +75,15 @@ public static class GameState
         }
         return gates;
     }
+
+    public static void IncrementCoins()
+    {
+        coins++;
+        GameObject[] coinGates = GameObject.FindGameObjectsWithTag("coin_gate");
+        foreach (GameObject coinGate in coinGates)
+        {
+            coinGate.GetComponent<CoinGate>().UpdateCoinSprite();
+        }
+
+    }
 }

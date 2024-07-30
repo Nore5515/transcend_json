@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-//class GateObjectJSON : WorldObjectJSON
-//{
-//    public bool isClosed;
-//}
-
-public class GateObject : WorldObject
+public interface GateObjectInterface
 {
-    [SerializeField]
-    public bool closed = true;
+    bool closed { get; set; }
+}
+
+public class GateObject : WorldObject, GateObjectInterface
+{
+    public bool closed { get; set; } = true;
 
     [SerializeField]
     SpriteRenderer gateSprite;

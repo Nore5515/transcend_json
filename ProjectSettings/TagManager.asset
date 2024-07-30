@@ -12,6 +12,7 @@ TagManager:
   - blue_gate
   - green_gate
   - coin
+  - coin_gate
   layers:
   - Default
   - TransparentFX
