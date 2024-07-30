@@ -128,6 +128,7 @@ public class jsonCanvas : MonoBehaviour
         populated = true;
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
         GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("coin");
         foreach (GameObject gate in GetGates())
         {
             worldObjects.Add(gate);
@@ -139,6 +140,10 @@ public class jsonCanvas : MonoBehaviour
         foreach (GameObject flag in flags)
         {
             worldObjects.Add(flag);
+        }
+        foreach (GameObject coin in coins)
+        {
+            worldObjects.Add(coin);
         }
     }
 

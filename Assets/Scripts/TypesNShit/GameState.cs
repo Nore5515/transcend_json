@@ -16,10 +16,13 @@ public static class GameState
     public static bool greenGateEditingEnabled = false;
 
     public static bool buttonEditingEnabled = false;
+    public static bool coinEditingEnabled = false;
 
     static Dictionary<string, bool> buttonFlags = new();
 
     public static List<TypeEnum> editableTypes = new();
+
+    public static int coins = 0;
 
     public static Dictionary<string, bool> GetButtonFlags()
     {

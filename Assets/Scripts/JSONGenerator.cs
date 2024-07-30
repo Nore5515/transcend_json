@@ -46,6 +46,9 @@ public class JSONGenerator : MonoBehaviour
     bool buttonEditingEnabled = false;
 
     [SerializeField]
+    bool coinEditingEnabled = false;
+
+    [SerializeField]
     List<TypeEnum> editableTypes = new();
 
     [SerializeField]
@@ -65,14 +68,19 @@ public class JSONGenerator : MonoBehaviour
         GameState.blueGateEditingEnabled = blueGateEditingEnabled;
         GameState.greenGateEditingEnabled = greenGateEditingEnabled;
         GameState.buttonEditingEnabled = buttonEditingEnabled;
+        GameState.coinEditingEnabled = coinEditingEnabled;
 
         enabledTags.Add("flag", GameState.flagEditingEnabled);
         enabledTags.Add("red_gate", GameState.redGateEditingEnabled);
         enabledTags.Add("blue_gate", GameState.blueGateEditingEnabled);
         enabledTags.Add("green_gate", GameState.greenGateEditingEnabled);
         enabledTags.Add("button", GameState.buttonEditingEnabled);
+        enabledTags.Add("coin", GameState.coinEditingEnabled);
 
         GameState.editableTypes = editableTypes;
+
+        // All these other game state sets are here so why not
+        GameState.coins = 0;
 
         if (jsonBlockers != null)
         {

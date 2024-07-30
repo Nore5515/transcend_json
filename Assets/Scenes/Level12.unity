@@ -1354,6 +1354,7 @@ MonoBehaviour:
   blueGateEditingEnabled: 0
   greenGateEditingEnabled: 0
   buttonEditingEnabled: 0
+  editableTypes: 
   jsonBlockers: {fileID: 615534624}
 --- !u!4 &701994923
 Transform:
@@ -4375,7 +4376,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 960156604081782071, guid: 14d658182daa24c859a7e578b7e3fe3d, type: 3}
       propertyPath: nextLevel
-      value: Level13
+      value: Level12.5
       objectReference: {fileID: 0}
     - target: {fileID: 960156604081782071, guid: 14d658182daa24c859a7e578b7e3fe3d, type: 3}
       propertyPath: objectPool

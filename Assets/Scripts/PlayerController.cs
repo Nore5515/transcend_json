@@ -120,6 +120,10 @@ public class PlayerController : MonoBehaviour
             case TypeEnum.flag:
                 SceneManager.LoadScene(nextLevel);
                 break;
+            case TypeEnum.coin:
+                GameState.coins++;
+                Destroy(collidedObj.gameObject);
+                return;
             default:
                 break;
         }
