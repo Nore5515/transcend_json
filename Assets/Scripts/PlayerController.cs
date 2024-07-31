@@ -42,8 +42,11 @@ public class PlayerController : MonoBehaviour
         int objectCount = objectPool.transform.childCount;
         for (int x = 0; x < objectCount; x++)
         {
-            worldObjects.Add(objectPool.transform.GetChild(x).GetComponent<WorldObject>());
-            //objectDict.Add(objectPool.transform.GetChild(x).transform.position, objectPool.transform.GetChild(x).gameObject);
+            WorldObject obj = objectPool.transform.GetChild(x).GetComponent<WorldObject>();
+            if (obj != null)
+            {
+                worldObjects.Add(obj);
+            }
         }
     }
 
