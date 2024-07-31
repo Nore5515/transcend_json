@@ -42,19 +42,23 @@ public class PlayerController : MonoBehaviour
         int objectCount = objectPool.transform.childCount;
         for (int x = 0; x < objectCount; x++)
         {
-            WorldObject obj = objectPool.transform.GetChild(x).GetComponent<WorldObject>();
-            if (obj != null)
+            Transform child = objectPool.transform.GetChild(x);
+            if (child.tag == "meta_object")
             {
-                worldObjects.Add(obj);
+                //GameObject metaChild = child.GetComponent<MetaObject>().GetActiveObject();
+                //worldObjects.Add(metaChild.GetComponent<WorldObject>());
+                worldObjects.Add(child.GetComponent<WorldObject>());
+            }
+            else
+            {
+                WorldObject obj = child.GetComponent<WorldObject>();
+                if (obj != null)
+                {
+                    worldObjects.Add(obj);
+                }
             }
         }
     }
-
-    float holdingLeftTime = 0.0f;
-    float holdingRightTime = 0.0f;
-    float holdingUpTime = 0.0f;
-    float holdingDownTime = 0.0f;
-
 
     // Update is called once per frame
     void Update()
@@ -63,12 +67,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             MoveOnceInDir(Vector3.right);
-            holdingRightTime = 0.1f;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             MoveOnceInDir(Vector3.left);
-            holdingLeftTime = 0.1f;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
@@ -112,12 +114,14 @@ public class PlayerController : MonoBehaviour
         List<WorldObject> collidingObjs = worldObjects.FindAll(obj => obj.json.pos == worldCoord);
         foreach (WorldObject collidingObj in collidingObjs)
         {
+            Debug.Log("Checking collision");
             HandleObjectCollision(collidingObj);
         }
     }
 
     void HandleObjectCollision(WorldObject collidedObj)
     {
+        Debug.Log("Object " + collidedObj.json.type);
         switch (collidedObj.json.type)
         {
             case TypeEnum.flag:
