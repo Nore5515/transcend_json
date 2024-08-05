@@ -114,14 +114,12 @@ public class PlayerController : MonoBehaviour
         List<WorldObject> collidingObjs = worldObjects.FindAll(obj => obj.json.pos == worldCoord);
         foreach (WorldObject collidingObj in collidingObjs)
         {
-            Debug.Log("Checking collision");
             HandleObjectCollision(collidingObj);
         }
     }
 
     void HandleObjectCollision(WorldObject collidedObj)
     {
-        Debug.Log("Object " + collidedObj.json.type);
         switch (collidedObj.json.type)
         {
             case TypeEnum.flag:

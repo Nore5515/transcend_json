@@ -79,39 +79,36 @@ public class jsonCanvas : MonoBehaviour
                 {
                     foreach (ParsedWorldObjectJSON importedWorldObjJSON in export.objectList)
                     {
+                        Console.WriteLine("Handling parsed object {0}", importedWorldObjJSON.ID.ToString());
                         if (importedWorldObjJSON == null)
                         {
                             continue;
                         }
                         // Update actual world objects based on the newly edited json objects
                         WorldObjectJSON unparsedObjJSON = importedWorldObjJSON.GetWorldObjectJSON();
-                        Debug.Log(JsonUtility.ToJson(unparsedObjJSON));
+                        //Debug.Log(JsonUtility.ToJson(unparsedObjJSON));
 
                         foreach (GameObject obj in worldObjects)
                         {
-                            WorldObject wObj = obj.GetComponent<WorldObject>();
-                            if (!generator.blockerTiles.Contains(unparsedObjJSON.pos))
-                            {
-                                if (wObj.json.ID == unparsedObjJSON.ID)
-                                {
-                                    if (wObj.json.type != unparsedObjJSON.type)
-                                    {
-                                        if (GameState.editableTypes.Contains(unparsedObjJSON.type) && GameState.editableTypes.Contains(wObj.json.type))
-                                        {
-                                            // good !
-                                        }
-                                        else
-                                        {
-                                            throw new Exception("Invalid Permission: Type Edit");
-                                        }
-                                    }
-                                    wObj.UpdateJSON(unparsedObjJSON);
-                                    break;
-                                }
-                            }
-                            else
+                            if (generator.blockerTiles.Contains(unparsedObjJSON.pos))
                             {
                                 throw new Exception("No editing into no-json zone!");
+                            }
+
+                            WorldObject wObj = obj.GetComponent<WorldObject>();
+                            if (wObj.json.ID == unparsedObjJSON.ID)
+                            {
+                                Console.WriteLine("Found matching ID {0}", wObj.json.ID);
+                                if (wObj.json.type != unparsedObjJSON.type)
+                                {
+                                    if (!GameState.editableTypes.Contains(unparsedObjJSON.type) || !GameState.editableTypes.Contains(wObj.json.type))
+                                    {
+                                        throw new Exception("Invalid Permission: Type Edit");
+
+                                    }
+                                }
+                                wObj.UpdateJSON(unparsedObjJSON);
+                                break;
                             }
                         }
                     }
@@ -133,6 +130,7 @@ public class jsonCanvas : MonoBehaviour
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
         GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
         GameObject[] coins = GameObject.FindGameObjectsWithTag("coin");
+        GameObject[] metas = GameObject.FindGameObjectsWithTag("meta_object");
         foreach (GameObject gate in GetGates())
         {
             worldObjects.Add(gate);
@@ -148,6 +146,10 @@ public class jsonCanvas : MonoBehaviour
         foreach (GameObject coin in coins)
         {
             worldObjects.Add(coin);
+        }
+        foreach (GameObject meta in metas)
+        {
+            worldObjects.Add(meta);
         }
     }
 

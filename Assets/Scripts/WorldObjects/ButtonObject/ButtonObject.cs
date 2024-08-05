@@ -123,7 +123,7 @@ public class ButtonObject : WorldObject
         json = newJSON;
         transform.position = json.pos;
         string newColor = GetColorFromEnum(newJSON.type);
-        Debug.Log(newColor);
+        //Debug.Log(newColor);
         UpdateWallGroup(newColor);
     }
 

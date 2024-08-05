@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,7 +8,31 @@ using UnityEngine;
 public class MetaObject : WorldObject
 {
     GameObject activeObject;
-    public override WorldObjectJSON json { get; set; } = new();
+
+    private WorldObjectJSON internalJSON = new();
+    public override WorldObjectJSON json
+    {
+        get
+        {
+            WorldObjectJSON activeJSON = GetActiveObject().GetComponent<WorldObject>().json;
+            activeJSON.pos = internalJSON.pos;
+            return activeJSON;
+        }
+        set
+        {
+            Debug.Log("Setting new JSON!");
+            UpdateJSON(value);
+        }
+    }
+
+    [SerializeField]
+    GameObject flag;
+
+    [SerializeField]
+    GameObject coin;
+
+    [SerializeField]
+    GameObject button;
 
     bool lateStart = false;
 
@@ -15,6 +40,55 @@ public class MetaObject : WorldObject
     {
         UpdateActiveObject();
         return activeObject;
+    }
+
+    public override void UpdateJSON(WorldObjectJSON newJSON)
+    {
+        Debug.Log("NEW JSON!");
+        Console.WriteLine("Pos: {0}, Type: {1}, ID: {2}", newJSON.pos, newJSON.type, newJSON.ID);
+        internalJSON.pos = newJSON.pos;
+        internalJSON.ID = newJSON.ID;
+        transform.position = newJSON.pos;
+        // Type Check
+        if (internalJSON.type != newJSON.type)
+        {
+            // NEW TYPE!
+            Debug.Log("NEW TYPE!");
+            SwitchObject(newJSON.type);
+            internalJSON.type = newJSON.type;
+            UpdateActiveObject();
+        }
+        else
+        {
+            internalJSON.type = newJSON.type;
+        }
+    }
+
+    void SwitchObject(TypeEnum newType)
+    {
+        DisableAll();
+        switch (newType)
+        {
+            case TypeEnum.flag:
+                flag.SetActive(true);
+                break;
+            case TypeEnum.coin:
+                coin.SetActive(true);
+                break;
+            case TypeEnum.redbutton:
+                button.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void DisableAll()
+    {
+        for (int x = 0; x < transform.childCount; x++)
+        {
+            transform.GetChild(x).gameObject.SetActive(false);
+        }
     }
 
     void UpdateActiveObject()
@@ -30,19 +104,11 @@ public class MetaObject : WorldObject
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     void LateStart()
     {
-        json.pos = transform.position;
-        json.type = GetActiveObject().GetComponent<WorldObject>().json.type;
-        json.ID = GetInstanceID();
-        Debug.Log(json.pos);
-        Debug.Log(json.type);
-        Debug.Log(json.ID);
+        internalJSON.pos = transform.position;
+        internalJSON.type = GetActiveObject().GetComponent<WorldObject>().json.type;
+        internalJSON.ID = GetInstanceID();
     }
 
     // Update is called once per frame
@@ -56,9 +122,9 @@ public class MetaObject : WorldObject
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Debug.Log(json.pos);
-            Debug.Log(json.type);
-            Debug.Log(json.ID);
+            Debug.Log(internalJSON.pos);
+            Debug.Log(internalJSON.type);
+            Debug.Log(internalJSON.ID);
         }
     }
 }

@@ -126,6 +126,8 @@ public class JSONGenerator : MonoBehaviour
             }
         }
 
+        AddObjectsByTag("meta_object");
+
         string s = JsonUtility.ToJson(export);
         jsonField.text = s;
     }

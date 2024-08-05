@@ -1832,6 +1832,7 @@ MonoBehaviour:
   blueGateEditingEnabled: 0
   greenGateEditingEnabled: 0
   buttonEditingEnabled: 1
+  coinEditingEnabled: 0
   editableTypes: 040000000500000007000000
   jsonBlockers: {fileID: 615534624}
 --- !u!4 &701994923
