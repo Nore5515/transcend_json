@@ -49,6 +49,9 @@ public class JSONGenerator : MonoBehaviour
     bool coinEditingEnabled = false;
 
     [SerializeField]
+    bool bridgeEditingEnabled = false;
+
+    [SerializeField]
     List<TypeEnum> editableTypes = new();
 
     [SerializeField]
@@ -69,6 +72,7 @@ public class JSONGenerator : MonoBehaviour
         GameState.greenGateEditingEnabled = greenGateEditingEnabled;
         GameState.buttonEditingEnabled = buttonEditingEnabled;
         GameState.coinEditingEnabled = coinEditingEnabled;
+        GameState.bridgeEditingEnabled = bridgeEditingEnabled;
 
         enabledTags.Add("flag", GameState.flagEditingEnabled);
         enabledTags.Add("red_gate", GameState.redGateEditingEnabled);
@@ -76,6 +80,7 @@ public class JSONGenerator : MonoBehaviour
         enabledTags.Add("green_gate", GameState.greenGateEditingEnabled);
         enabledTags.Add("button", GameState.buttonEditingEnabled);
         enabledTags.Add("coin", GameState.coinEditingEnabled);
+        enabledTags.Add("bridge", GameState.bridgeEditingEnabled);
 
         GameState.editableTypes = editableTypes;
 

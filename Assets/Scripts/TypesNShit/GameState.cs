@@ -17,6 +17,7 @@ public static class GameState
 
     public static bool buttonEditingEnabled = false;
     public static bool coinEditingEnabled = false;
+    public static bool bridgeEditingEnabled = false;
 
     static Dictionary<string, bool> buttonFlags = new();
 

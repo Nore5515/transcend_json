@@ -127,29 +127,45 @@ public class jsonCanvas : MonoBehaviour
     void PopulateWorldObjectList()
     {
         populated = true;
-        GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
-        GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
-        GameObject[] coins = GameObject.FindGameObjectsWithTag("coin");
-        GameObject[] metas = GameObject.FindGameObjectsWithTag("meta_object");
-        foreach (GameObject gate in GetGates())
+        List<GameObject[]> objects = new()
         {
-            worldObjects.Add(gate);
-        }
-        foreach (GameObject button in buttons)
+            GameObject.FindGameObjectsWithTag("button"),
+            GameObject.FindGameObjectsWithTag("flag"),
+            GameObject.FindGameObjectsWithTag("coin"),
+            GameObject.FindGameObjectsWithTag("meta_object"),
+            GameObject.FindGameObjectsWithTag("bridge")
+        };
+        //GameObject[] buttons = GameObject.FindGameObjectsWithTag("button");
+        //GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
+        //GameObject[] coins = GameObject.FindGameObjectsWithTag("coin");
+        //GameObject[] metas = GameObject.FindGameObjectsWithTag("meta_object");
+        //GameObject[] bridges = GameObject.FindGameObjectsWithTag("bridge");
+        //foreach (GameObject gate in GetGates())
+        //{
+        //    worldObjects.Add(gate);
+        //}
+        //foreach (GameObject button in buttons)
+        //{
+        //    worldObjects.Add(button);
+        //}
+        //foreach (GameObject flag in flags)
+        //{
+        //    worldObjects.Add(flag);
+        //}
+        //foreach (GameObject coin in coins)
+        //{
+        //    worldObjects.Add(coin);
+        //}
+        //foreach (GameObject meta in metas)
+        //{
+        //    worldObjects.Add(meta);
+        //}
+        foreach (GameObject[] array in objects)
         {
-            worldObjects.Add(button);
-        }
-        foreach (GameObject flag in flags)
-        {
-            worldObjects.Add(flag);
-        }
-        foreach (GameObject coin in coins)
-        {
-            worldObjects.Add(coin);
-        }
-        foreach (GameObject meta in metas)
-        {
-            worldObjects.Add(meta);
+            foreach (GameObject obj in array)
+            {
+                worldObjects.Add(obj);
+            }
         }
     }
 

@@ -13,5 +13,6 @@ public enum TypeEnum
     greenbutton,
     coin,
     coingate,
-    player
+    player,
+    bridge
 }

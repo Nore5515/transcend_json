@@ -161,7 +161,11 @@ public class PlayerController : MonoBehaviour
         switch (tileName)
         {
             case "RedTile":
-                return false;
+                if (!IsBridgeAtPos(worldCoord))
+                {
+                    return false;
+                }
+                break;
             case "GreenTile":
                 return false;
             default:
@@ -176,8 +180,13 @@ public class PlayerController : MonoBehaviour
                 return false;
             }
         }
-
         return true;
+    }
+
+    bool IsBridgeAtPos(Vector3 worldCoord)
+    {
+        List<WorldObject> bridges = worldObjects.FindAll(obj => obj.json.pos == worldCoord && obj.json.type == TypeEnum.bridge);
+        return (bridges.Count > 0);
     }
 
     void CleanupObjects()

@@ -3,13 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public class FlagObjectJSON : WorldObjectJSON
-//{
-//    public string type { get; set; }
-//    public int ID { get; set; }
-//    public Vector3 pos { get; set; }
-//}
-
 public class FlagObject : WorldObject
 {
     public override WorldObjectJSON json { get; set; } = new();
