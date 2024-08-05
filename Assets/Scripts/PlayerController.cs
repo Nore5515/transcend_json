@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
     bool ProcessFutureMovementTile(Vector3 worldCoords)
     {
+        CleanupObjects();
         if (IsTileAtVectorWalkable(worldCoords))
         {
             if (IsTileAtVectorObject(worldCoords))
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
         }
         if (IsButton(collidedObj.json.type))
         {
-            collidedObj.gameObject.GetComponent<ButtonObject>().SetButtonPressed(true);
+            collidedObj.buttonObject.SetButtonPressed(true);
         }
     }
 
@@ -177,6 +178,17 @@ public class PlayerController : MonoBehaviour
         }
 
         return true;
+    }
+
+    void CleanupObjects()
+    {
+        for (int x = 0; x < worldObjects.Count; x++)
+        {
+            if (worldObjects[x] == null)
+            {
+                worldObjects.RemoveAt(x);
+            }
+        }
     }
 
     bool IsGate(TypeEnum type)

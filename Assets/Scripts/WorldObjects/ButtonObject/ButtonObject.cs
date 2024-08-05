@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonObject : WorldObject
 {
+
     [SerializeField]
     GameObject buttonUp;
 
