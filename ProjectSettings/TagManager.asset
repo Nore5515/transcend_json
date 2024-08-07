@@ -22,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - dark
   - 
   - 
   - 
@@ -60,4 +60,7 @@ TagManager:
     locked: 0
   - name: NoJSONZone
     uniqueID: 2491805595
+    locked: 0
+  - name: darkness
+    uniqueID: 1280971441
     locked: 0

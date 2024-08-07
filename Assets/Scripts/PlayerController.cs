@@ -131,6 +131,9 @@ public class PlayerController : MonoBehaviour
                 GameState.IncrementCoins();
                 Destroy(collidedObj.gameObject);
                 return;
+            case TypeEnum.exit:
+                collidedObj.GetComponent<MetaObject>().GetActiveObject().GetComponent<Exit>().Goodbye();
+                break;
             default:
                 break;
         }

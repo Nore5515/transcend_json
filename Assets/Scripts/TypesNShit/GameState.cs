@@ -19,6 +19,8 @@ public static class GameState
     public static bool coinEditingEnabled = false;
     public static bool bridgeEditingEnabled = false;
 
+    public static bool exitEditingEnabled = false;
+
     static Dictionary<string, bool> buttonFlags = new();
 
     public static List<TypeEnum> editableTypes = new();

@@ -40,6 +40,8 @@ public class MetaObject : WorldObject
     [SerializeField]
     GameObject bridge;
 
+    [SerializeField]
+    GameObject exit;
 
     bool lateStart = false;
 
@@ -92,6 +94,9 @@ public class MetaObject : WorldObject
                 break;
             case TypeEnum.bridge:
                 bridge.SetActive(true);
+                break;
+            case TypeEnum.exit:
+                exit.SetActive(true);
                 break;
             default:
                 break;

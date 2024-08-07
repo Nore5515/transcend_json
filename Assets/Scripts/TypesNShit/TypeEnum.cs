@@ -14,5 +14,6 @@ public enum TypeEnum
     coin,
     coingate,
     player,
-    bridge
+    bridge,
+    exit
 }
