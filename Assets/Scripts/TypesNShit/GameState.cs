@@ -30,8 +30,17 @@ public static class GameState
         return buttonFlags;
     }
 
+    public static void ResetButtonFlags()
+    {
+        foreach (string s in new List<string>(buttonFlags.Keys))
+        {
+            buttonFlags[s] = false;
+        }
+    }
+
     public static void ToggleButtonFlag(string flag, bool newState)
     {
+        Debug.Log(string.Format("Toggling button flag {0} to {1}", flag, newState));
         if (!buttonFlags.ContainsKey(flag))
         {
             buttonFlags.Add(flag, newState);

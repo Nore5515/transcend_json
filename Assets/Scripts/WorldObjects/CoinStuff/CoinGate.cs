@@ -21,6 +21,7 @@ public class CoinGate : WorldObject, GateObjectInterface
     // Start is called before the first frame update
     void Start()
     {
+        GameState.coins = 0;
         json.pos = transform.position;
         json.type = TypeEnum.coingate;
         json.ID = GetInstanceID();

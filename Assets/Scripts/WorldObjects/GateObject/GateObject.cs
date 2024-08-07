@@ -26,6 +26,7 @@ public class GateObject : WorldObject, GateObjectInterface
 
     public void SetClosedState(bool newState)
     {
+        Debug.Log(string.Format("Setting {0} colored gate to {1}", color, newState ? "Closed" : "Open"));
         closed = newState;
         UpdateSpriteState();
     }

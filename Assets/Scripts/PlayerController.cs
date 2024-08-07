@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        GameState.coins = 0;
         json.pos = transform.position;
         int objectCount = objectPool.transform.childCount;
         for (int x = 0; x < objectCount; x++)
@@ -45,8 +46,6 @@ public class PlayerController : MonoBehaviour
             Transform child = objectPool.transform.GetChild(x);
             if (child.tag == "meta_object")
             {
-                //GameObject metaChild = child.GetComponent<MetaObject>().GetActiveObject();
-                //worldObjects.Add(metaChild.GetComponent<WorldObject>());
                 worldObjects.Add(child.GetComponent<WorldObject>());
             }
             else
@@ -58,6 +57,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        GameState.ResetButtonFlags();
     }
 
     // Update is called once per frame
@@ -167,6 +168,8 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case "GreenTile":
+                return false;
+            case "VaultWall":
                 return false;
             default:
                 break;

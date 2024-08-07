@@ -45,8 +45,8 @@ public class ButtonObject : WorldObject
     public void UpdateWallGroup(string newWallGroup)
     {
         wallGroup = newWallGroup;
-        SwitchSprites(wallGroup);
         json.type = GetEnumFromString(wallGroup + "Button");
+        SwitchSprites(wallGroup);
     }
 
     void SwitchSprites(string colorSprites)
@@ -101,12 +101,12 @@ public class ButtonObject : WorldObject
     public void SetButtonPressed(bool state)
     {
         pressed = state;
+        GameState.ToggleButtonFlag(wallGroup, pressed);
         UpdateButton();
     }
 
     void UpdateButton()
     {
-        GameState.ToggleButtonFlag(wallGroup, pressed);
         if (pressed)
         {
             buttonUp.SetActive(false);
@@ -130,6 +130,7 @@ public class ButtonObject : WorldObject
 
     string GetColorFromEnum(TypeEnum num)
     {
+        Debug.Log("Switching on " + num);
         switch (num)
         {
             case TypeEnum.redbutton:

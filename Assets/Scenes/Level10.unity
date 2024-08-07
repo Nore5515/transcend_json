@@ -2010,8 +2010,8 @@ Tilemap:
   - first: {x: 3, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2020,8 +2020,8 @@ Tilemap:
   - first: {x: 4, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2210,8 +2210,8 @@ Tilemap:
   - first: {x: 3, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2220,8 +2220,8 @@ Tilemap:
   - first: {x: 4, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3029,26 +3029,26 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 32
+  - m_RefCount: 34
     m_Data: {fileID: 11400000, guid: b053da18a41bf41dc97c3471c8776541, type: 2}
-  - m_RefCount: 55
+  - m_RefCount: 51
     m_Data: {fileID: 11400000, guid: 929aa5ebc80f34538a3d75b700f5b803, type: 2}
   - m_RefCount: 133
     m_Data: {fileID: 11400000, guid: 78d094d223886437fba1eeab5d48bcad, type: 2}
-  - m_RefCount: 7
+  - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: afd04474541a343fb86162afbd7d6149, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: b5b20071176134316b474360994e3f91, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 719383bb10f594cc0a02c74ad61f009f, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 32
+  - m_RefCount: 34
     m_Data: {fileID: 21300000, guid: 4e401428268fc4f718f3a522359e4f6b, type: 3}
-  - m_RefCount: 55
+  - m_RefCount: 51
     m_Data: {fileID: 21300000, guid: 35aab100162c5483da45f925653b5951, type: 3}
   - m_RefCount: 133
     m_Data: {fileID: 21300000, guid: 5fdfd826f88b648c1bf8994f0d30947e, type: 3}
-  - m_RefCount: 7
+  - m_RefCount: 9
     m_Data: {fileID: 21300000, guid: 0d0a49b63a1854c2ba6472c0f25bcd48, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 1e2ea79f73fb84a3d8091c25e1b3ceae, type: 3}
@@ -3636,7 +3636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: text
-      value: Don't forget to check what you can edit! You may find shortcuts...
+      value: Don't forget to check what you can edit!
       objectReference: {fileID: 0}
     - target: {fileID: 955832871422821426, guid: b1f36aeb5d5dc44f682508e63d740d2b, type: 3}
       propertyPath: messageHidden

@@ -34,6 +34,13 @@ public class MetaObject : WorldObject
     [SerializeField]
     GameObject button;
 
+    [SerializeField]
+    GameObject greenbutton;
+
+    [SerializeField]
+    GameObject bridge;
+
+
     bool lateStart = false;
 
     public GameObject GetActiveObject()
@@ -76,7 +83,15 @@ public class MetaObject : WorldObject
                 coin.SetActive(true);
                 break;
             case TypeEnum.redbutton:
+                buttonObject = button.GetComponent<ButtonObject>();
                 button.SetActive(true);
+                break;
+            case TypeEnum.greenbutton:
+                buttonObject = greenbutton.GetComponent<ButtonObject>();
+                greenbutton.SetActive(true);
+                break;
+            case TypeEnum.bridge:
+                bridge.SetActive(true);
                 break;
             default:
                 break;
