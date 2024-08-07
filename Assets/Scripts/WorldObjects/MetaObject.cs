@@ -41,7 +41,7 @@ public class MetaObject : WorldObject
     GameObject bridge;
 
     [SerializeField]
-    GameObject exit;
+    public GameObject exit;
 
     bool lateStart = false;
 

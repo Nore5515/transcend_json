@@ -129,7 +129,23 @@ public class PlayerController : MonoBehaviour
                 break;
             case TypeEnum.coin:
                 GameState.IncrementCoins();
-                Destroy(collidedObj.gameObject);
+                if (collidedObj.GetComponent<MetaObject>() != null)
+                {
+                    if (collidedObj.GetComponent<MetaObject>().GetActiveObject().GetComponent<Coin>().lastCoin)
+                    {
+                        collidedObj.transform.position = new Vector3(999.0f, 999.0f);
+                        collidedObj.GetComponent<MetaObject>().exit.SetActive(true);
+                        collidedObj.GetComponent<MetaObject>().exit.GetComponent<Exit>().Goodbye();
+                    }
+                    else
+                    {
+                        Destroy(collidedObj.gameObject);
+                    }
+                }
+                else
+                {
+                    Destroy(collidedObj.gameObject);
+                }
                 return;
             case TypeEnum.exit:
                 collidedObj.GetComponent<MetaObject>().GetActiveObject().GetComponent<Exit>().Goodbye();

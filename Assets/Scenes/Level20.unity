@@ -881,6 +881,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1571857986}
     m_Modifications:
+    - target: {fileID: 731873867573090402, guid: 27d13a5715159499eaea04c832671fc1, type: 3}
+      propertyPath: lastCoin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1846296758594478752, guid: 27d13a5715159499eaea04c832671fc1, type: 3}
       propertyPath: ui1
       value: 
