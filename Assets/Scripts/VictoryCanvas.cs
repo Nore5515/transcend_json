@@ -11,4 +11,9 @@ public class VictoryCanvas : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
+
+    public void BackToMain()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

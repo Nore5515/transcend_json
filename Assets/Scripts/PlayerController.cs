@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
                     {
                         collidedObj.transform.position = new Vector3(999.0f, 999.0f);
                         collidedObj.GetComponent<MetaObject>().exit.SetActive(true);
-                        collidedObj.GetComponent<MetaObject>().exit.GetComponent<Exit>().Goodbye();
+                        collidedObj.GetComponent<MetaObject>().exit.GetComponent<Exit>().Goodbye(false);
                     }
                     else
                     {
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
                 }
                 return;
             case TypeEnum.exit:
-                collidedObj.GetComponent<MetaObject>().GetActiveObject().GetComponent<Exit>().Goodbye();
+                collidedObj.GetComponent<MetaObject>().GetActiveObject().GetComponent<Exit>().Goodbye(true);
                 break;
             default:
                 break;

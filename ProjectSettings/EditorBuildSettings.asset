@@ -78,9 +78,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Level17.unity
     guid: a385980917e9f4c0b8848cce4eaa043e
   - enabled: 1
-    path: Assets/Scenes/UI_Levels/Victory.unity
+    path: Assets/Scenes/UI_Levels/MainMenu.unity
     guid: b7334a8e26c67414a9928ecf8cbfa0ce
   - enabled: 1
     path: Assets/Scenes/Storage_1.unity
     guid: 44503dc0c62634ccea03163b3b261be4
+  - enabled: 1
+    path: Assets/Scenes/UI_Levels/Victory_Vault.unity
+    guid: 770f2961f7d3f4f629c086a5aaebc900
+  - enabled: 1
+    path: Assets/Scenes/UI_Levels/Victory_House.unity
+    guid: 72d6d56e4582c4562a2150658624884e
   m_configObjects: {}

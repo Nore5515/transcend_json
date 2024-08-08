@@ -20,6 +20,8 @@ public class Exit : WorldObject
     [SerializeField]
     GameObject ui3;
 
+    bool trappedInVault = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +30,9 @@ public class Exit : WorldObject
         json.ID = GetInstanceID();
     }
 
-    public void Goodbye()
+    public void Goodbye(bool isInVault)
     {
+        trappedInVault = isInVault;
         Debug.Log("Meep");
         StartCoroutine(WaitAndStartZoom());
     }
@@ -66,6 +69,13 @@ public class Exit : WorldObject
     IEnumerator WaitAndLoad()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Victory");
+        if (trappedInVault)
+        {
+            SceneManager.LoadScene("Victory_Vault");
+        }
+        else
+        {
+            SceneManager.LoadScene("Victory_House");
+        }
     }
 }
