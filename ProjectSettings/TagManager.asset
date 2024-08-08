@@ -15,6 +15,8 @@ TagManager:
   - coin_gate
   - meta_object
   - bridge
+  - settings
+  - music
   layers:
   - Default
   - TransparentFX

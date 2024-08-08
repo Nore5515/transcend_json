@@ -21,6 +21,9 @@ public static class GameState
 
     public static bool exitEditingEnabled = false;
 
+    public static bool musicMuted = false;
+    public static bool effectsMuted = false;
+
     static Dictionary<string, bool> buttonFlags = new();
 
     public static List<TypeEnum> editableTypes = new();

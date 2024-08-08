@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerJSON json = new PlayerJSON();
 
+    GameObject settingsMenu;
+
     public void UpdateJSON(PlayerJSON newJSON)
     {
         json = newJSON;
@@ -35,6 +37,12 @@ public class PlayerController : MonoBehaviour
     }
 
     //objectPool.transform.GetChild(x).name
+
+    private void Awake()
+    {
+        settingsMenu = GameObject.FindGameObjectWithTag("settings");
+        settingsMenu.SetActive(false);
+    }
 
     private void Start()
     {
@@ -84,6 +92,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            settingsMenu.SetActive(!settingsMenu.activeSelf);
         }
     }
 
