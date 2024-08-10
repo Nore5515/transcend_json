@@ -18,7 +18,12 @@ public class SettingsMenu : MonoBehaviour
 
     public void Awake()
     {
-        musicMute.isOn = GameState.musicMuted;
+        //musicMute.isOn = GameState.musicMuted;
+        GameObject audio = GameObject.FindGameObjectWithTag("music");
+        if (audio != null)
+        {
+            musicMute.isOn = audio.GetComponent<AudioSource>().mute;
+        }
         //try
         //{
         //    musicMute.isOn = GameState.musicMuted;
