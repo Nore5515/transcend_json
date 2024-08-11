@@ -190,6 +190,11 @@ public class PlayerController : MonoBehaviour
     {
         string tileName = worldTilemap.GetTile(worldTilemap.WorldToCell(worldCoord)).name;
 
+        if (tileName.Contains("test") || tileName.Contains("wallbg"))
+        {
+            return false;
+        }
+
         switch (tileName)
         {
             case "RedTile":

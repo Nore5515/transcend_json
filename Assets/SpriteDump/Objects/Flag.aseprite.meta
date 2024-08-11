@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Flag
     originalName: 
-    pivot: {x: 0.5, y: -0.032258064}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -129,7 +129,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 22
-      height: 31
+      height: 32
     spriteID: c4132e5462a124ee383d38a9fbb47cd3
     spriteBone: []
     spriteOutline: []
@@ -152,9 +152,9 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 5
-        y: 1
+        y: 0
         width: 22
-        height: 31
+        height: 32
       spriteId: c4132e5462a124ee383d38a9fbb47cd3
     linkedCells: []
     parentIndex: -1

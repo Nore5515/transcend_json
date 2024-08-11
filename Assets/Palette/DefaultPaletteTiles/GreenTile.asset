@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GreenTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 4e401428268fc4f718f3a522359e4f6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5affa38e83314eb1918378287c0df1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

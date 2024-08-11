@@ -12,7 +12,7 @@ public class BGMusic : MonoBehaviour
             GameObject[] musicObjs = GameObject.FindGameObjectsWithTag("music");
             if (musicObjs.Length > 1)
             {
-                //Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
             else
             {

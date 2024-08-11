@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,23 +17,27 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField]
     Toggle effectsMute;
 
+    [SerializeField]
+    Slider musicSlider;
+
+    [SerializeField]
+    Slider effectSlider;
+
+    AudioSource bg;
+
     public void Awake()
     {
         //musicMute.isOn = GameState.musicMuted;
         GameObject audio = GameObject.FindGameObjectWithTag("music");
         if (audio != null)
         {
-            musicMute.isOn = audio.GetComponent<AudioSource>().mute;
+            bg = audio.GetComponent<AudioSource>();
+            musicMute.isOn = bg.mute;
+
+            musicSlider.maxValue = 1.0f;
+            musicSlider.minValue = 0.0f;
+            musicSlider.value = bg.volume;
         }
-        //try
-        //{
-        //    musicMute.isOn = GameState.musicMuted;
-        //    effectsMute.isOn = GameState.effectsMuted;
-        //}
-        //catch (Exception e)
-        //{
-        //    Debug.Log(e.Data.ToString());
-        //}
     }
 
     public void Resume()
@@ -90,6 +95,6 @@ public class SettingsMenu : MonoBehaviour
 
     public void OnMusicSliderChange()
     {
-
+        bg.volume = musicSlider.value;
     }
 }
