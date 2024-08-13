@@ -195,6 +195,14 @@ public class PlayerController : MonoBehaviour
             return false;
         }
 
+        if (tileName.Contains("lava") || tileName.Contains("Lava"))
+        {
+            if (!IsBridgeAtPos(worldCoord))
+            {
+                return false;
+            }
+        }
+
         switch (tileName)
         {
             case "RedTile":
