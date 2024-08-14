@@ -54,6 +54,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: HiddenObjects
+    uniqueID: 3613897725
+    locked: 0
   - name: Objects
     uniqueID: 523394881
     locked: 0

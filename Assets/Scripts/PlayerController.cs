@@ -69,6 +69,14 @@ public class PlayerController : MonoBehaviour
         GameState.ResetButtonFlags();
     }
 
+    bool holdingRight = false;
+    bool holdingLeft = false;
+    bool holdingUp = false;
+    bool holdingDown = false;
+
+    float cooldown = 0.0f;
+    float walksPerSec = 0.25f;
+
     // Update is called once per frame
     void Update()
     {
@@ -76,18 +84,42 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             MoveOnceInDir(Vector3.right);
+            cooldown = 0.0f;
+            holdingRight = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
+        {
+            holdingRight = false;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             MoveOnceInDir(Vector3.left);
+            cooldown = 0.0f;
+            holdingLeft = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
+        {
+            holdingLeft = false;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             MoveOnceInDir(Vector3.up);
+            holdingUp = true;
+            cooldown = 0.0f;
+        }
+        else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+        {
+            holdingUp = false;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             MoveOnceInDir(-Vector3.up);
+            cooldown = 0.0f;
+            holdingDown = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
+        {
+            holdingDown = false;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -96,6 +128,61 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             settingsMenu.SetActive(!settingsMenu.activeSelf);
+        }
+
+        //
+
+        if (holdingRight)
+        {
+            if (cooldown < walksPerSec)
+            {
+                cooldown += Time.deltaTime;
+            }
+            else
+            {
+                MoveOnceInDir(Vector3.right);
+                cooldown = 0.0f;
+            }
+        }
+        else if (holdingLeft)
+        {
+            if (cooldown < walksPerSec)
+            {
+                cooldown += Time.deltaTime;
+            }
+            else
+            {
+                MoveOnceInDir(Vector3.left);
+                cooldown = 0.0f;
+            }
+        }
+        else if (holdingUp)
+        {
+            if (cooldown < walksPerSec)
+            {
+                cooldown += Time.deltaTime;
+            }
+            else
+            {
+                MoveOnceInDir(Vector3.up);
+                cooldown = 0.0f;
+            }
+        }
+        else if (holdingDown)
+        {
+            if (cooldown < walksPerSec)
+            {
+                cooldown += Time.deltaTime;
+            }
+            else
+            {
+                MoveOnceInDir(Vector3.down);
+                cooldown = 0.0f;
+            }
+        }
+        else
+        {
+            cooldown = 0.0f;
         }
     }
 

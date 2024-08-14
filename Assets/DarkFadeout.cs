@@ -35,6 +35,7 @@ public class DarkFadeout : MonoBehaviour
             else
             {
                 undarking = false;
+                Destroy(gameObject);
             }
         }
     }
